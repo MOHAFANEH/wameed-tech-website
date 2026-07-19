@@ -17,28 +17,37 @@ html[lang="ar"] {
   box-sizing: border-box;
 }
 
-body {
+html, body {
   background-color: #F7F6FB;
   color: #1A1730;
 }
 
-/* Brand gradient */
+/* Ensure all text is dark by default */
+h1, h2, h3, h4, h5, h6, p, span, div, section, article {
+  color: #1A1730;
+}
+
+/* Brand gradient - white text inside */
 .gradient-brand {
   background: linear-gradient(135deg, #2E2560 0%, #4B3F9E 100%);
+  color: #F7F6FB;
+}
+
+.gradient-brand h1,
+.gradient-brand h2,
+.gradient-brand h3,
+.gradient-brand h4,
+.gradient-brand h5,
+.gradient-brand h6,
+.gradient-brand p,
+.gradient-brand span,
+.gradient-brand div {
+  color: #F7F6FB;
 }
 
 /* Smooth transitions */
 a, button {
   transition: all 0.3s ease;
-}
-
-/* Bilingual text alignment */
-[dir="ltr"] .text-right {
-  text-align: right;
-}
-
-[dir="rtl"] .text-right {
-  text-align: left;
 }
 
 /* Link styles */

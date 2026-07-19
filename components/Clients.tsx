@@ -27,20 +27,12 @@ const Clients = ({ lang }: ClientsProps) => {
         icon: '🧺',
       },
       {
-        name: 'Project Alpha',
-        description: 'E-commerce platform for fashion retail',
-        link: '#',
+        name: 'Leap on Deals',
+        description: 'Online marketplace for discovering amazing deals and discounts',
+        link: 'www.leapondeals.com',
         category: 'E-Commerce',
         color: 'bg-purple-50',
-        icon: '👗',
-      },
-      {
-        name: 'Project Beta',
-        description: 'SaaS dashboard for business analytics',
-        link: '#',
-        category: 'SaaS',
-        color: 'bg-green-50',
-        icon: '📊',
+        icon: '🎯',
       },
     ],
     ar: [
@@ -53,20 +45,12 @@ const Clients = ({ lang }: ClientsProps) => {
         icon: '🧺',
       },
       {
-        name: 'المشروع ألفا',
-        description: 'منصة التجارة الإلكترونية لبيع الملابس',
-        link: '#',
+        name: 'قفزة العروض',
+        description: 'منصة تسوق إلكترونية لاكتشاف أفضل العروض والخصومات',
+        link: 'www.leapondeals.com',
         category: 'التجارة الإلكترونية',
         color: 'bg-purple-50',
-        icon: '👗',
-      },
-      {
-        name: 'المشروع بيتا',
-        description: 'لوحة التحكم للتحليلات والبيانات',
-        link: '#',
-        category: 'SaaS',
-        color: 'bg-green-50',
-        icon: '📊',
+        icon: '🎯',
       },
     ],
   }
@@ -85,16 +69,16 @@ const Clients = ({ lang }: ClientsProps) => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-12">
           {p.map((project, i) => (
             <div
               key={i}
-              className={`${project.color} rounded-lg p-8 shadow-md hover:shadow-xl transition border-l-4 border-brand-teal`}
+              className={`${project.color} rounded-lg p-12 shadow-md hover:shadow-xl transition border-l-4 border-brand-teal min-h-80`}
             >
-              <div className="text-5xl mb-4">{project.icon}</div>
-              <h3 className="text-2xl font-bold text-brand-deep mb-2">{project.name}</h3>
-              <p className="text-brand-teal text-sm font-semibold mb-3">{project.category}</p>
-              <p className="text-gray-700 mb-6">{project.description}</p>
+              <div className="text-7xl mb-6">{project.icon}</div>
+              <h3 className="text-3xl font-bold text-brand-deep mb-3">{project.name}</h3>
+              <p className="text-brand-teal text-base font-semibold mb-4">{project.category}</p>
+              <p className="text-gray-700 mb-8 text-lg">{project.description}</p>
               <a
                 href={`https://${project.link}`}
                 target="_blank"
