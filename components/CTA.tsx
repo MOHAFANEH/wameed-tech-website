@@ -187,7 +187,9 @@ const CTA = ({ lang }: CTAProps) => {
           </div>
           <div>
             <div className="text-3xl mb-2">📍</div>
-            <p className="text-gray-600 font-semibold">Amman, Jordan</p>
+            <p className="text-gray-600 font-semibold">
+              {lang === 'en' ? 'Amman, Jordan' : 'عمّان، الأردن'}
+            </p>
           </div>
         </div>
       </div>

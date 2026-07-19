@@ -78,7 +78,7 @@ const Footer = ({ lang }: FooterProps) => {
                   <span dir="ltr">+962 78 627 7768</span>
                 </a>
               </p>
-              <p>Amman, Jordan</p>
+              <p>{lang === 'en' ? 'Amman, Jordan' : 'عمّان، الأردن'}</p>
             </div>
           </div>
         </div>
