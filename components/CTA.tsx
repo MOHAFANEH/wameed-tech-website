@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Reveal from './Reveal'
 
 interface CTAProps {
   lang: string
@@ -86,13 +87,16 @@ const CTA = ({ lang }: CTAProps) => {
     <section id="contact" className="py-20 bg-brand-bg">
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{c.title}</h2>
-          <p className="text-2xl text-brand-teal mb-4">{c.subtitle}</p>
-          <p className="text-lg text-gray-600">{c.description}</p>
-        </div>
+        <Reveal>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{c.title}</h2>
+            <p className="text-2xl text-brand-teal mb-4">{c.subtitle}</p>
+            <p className="text-lg text-gray-600">{c.description}</p>
+          </div>
+        </Reveal>
 
         {/* Form */}
+        <Reveal delay={150}>
         <div className="bg-white rounded-lg shadow-lg p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name */}
@@ -159,12 +163,13 @@ const CTA = ({ lang }: CTAProps) => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-gradient-brand text-white font-bold rounded-lg hover:opacity-90 transition disabled:opacity-50"
+              className="w-full py-3 gradient-brand text-white font-bold rounded-lg hover:opacity-90 transition disabled:opacity-50"
             >
               {loading ? c.form.sending : c.form.submit}
             </button>
           </form>
         </div>
+        </Reveal>
 
         {/* Contact Info */}
         <div className="mt-12 grid md:grid-cols-3 gap-8 text-center">

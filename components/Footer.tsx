@@ -35,7 +35,7 @@ const Footer = ({ lang }: FooterProps) => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                <span className="text-white text-xl font-bold">ω</span>
+                <img src="/images/logo-mark.svg" alt="" className="w-7 h-auto" />
               </div>
               <span className="text-2xl font-bold">
                 {lang === 'ar' ? 'وميض تك' : 'Wameed Tech'}

@@ -31,8 +31,8 @@ const Hero = ({ lang }: HeroProps) => {
       <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
         {/* Logo */}
         <div className="mb-8">
-          <div className="w-24 h-24 mx-auto bg-white bg-opacity-10 rounded-full flex items-center justify-center border-2 border-brand-teal backdrop-blur-sm">
-            <span className="text-5xl">ω</span>
+          <div className="w-32 h-32 mx-auto bg-white bg-opacity-10 rounded-full flex items-center justify-center border-2 border-brand-teal backdrop-blur-sm">
+            <img src="/images/logo-mark.svg" alt="Wameed Tech logo" className="w-20 h-auto" />
           </div>
         </div>
 

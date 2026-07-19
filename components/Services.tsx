@@ -1,3 +1,5 @@
+import Reveal from './Reveal'
+
 interface ServicesProps {
   lang: string
 }
@@ -76,28 +78,30 @@ const Services = ({ lang }: ServicesProps) => {
     <section id="about" className="py-20 bg-brand-bg">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{c.title}</h2>
-          <p className="text-2xl text-brand-teal mb-8">{c.subtitle}</p>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">{c.intro}</p>
-        </div>
+        <Reveal>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{c.title}</h2>
+            <p className="text-2xl text-brand-teal mb-8">{c.subtitle}</p>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">{c.intro}</p>
+          </div>
+        </Reveal>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {c.services.map((service, i) => (
-            <div
-              key={i}
-              className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition border-t-4 border-brand-teal"
-            >
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-xl font-bold text-brand-deep mb-2">{service.title}</h3>
-              <p className="text-gray-600">{service.description}</p>
-            </div>
+            <Reveal key={i} delay={i * 150}>
+              <div className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-2 transition-all duration-300 border-t-4 border-brand-teal h-full">
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold text-brand-deep mb-2">{service.title}</h3>
+                <p className="text-gray-600">{service.description}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
 
         {/* Core Values */}
-        <div className="bg-gradient-brand text-white rounded-lg p-12">
+        <Reveal>
+        <div className="gradient-brand text-white rounded-lg p-12">
           <h3 className="text-3xl font-bold mb-8 text-center">
             {lang === 'en' ? 'Our Core Values' : 'قيمنا الأساسية'}
           </h3>
@@ -111,6 +115,7 @@ const Services = ({ lang }: ServicesProps) => {
             ))}
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   )

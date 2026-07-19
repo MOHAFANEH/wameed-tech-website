@@ -31,11 +31,11 @@ const Navigation = ({ lang, setLang }: NavigationProps) => {
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-gradient-brand rounded-full flex items-center justify-center">
-            <span className="text-white text-xl font-bold">ω</span>
+          <div className="w-10 h-10 gradient-brand rounded-full flex items-center justify-center">
+            <img src="/images/logo-mark.svg" alt="" className="w-7 h-auto" />
           </div>
           <span className="font-bold text-xl text-brand-deep">
-            {lang === 'ar' ? 'وميض' : 'Wameed'}
+            {lang === 'ar' ? 'وميض تك' : 'Wameed Tech'}
           </span>
         </div>
 
