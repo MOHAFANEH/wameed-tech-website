@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html[lang="en"] {
+  direction: ltr;
+}
+
+html[lang="ar"] {
+  direction: rtl;
+  font-family: 'Noto Sans Arabic', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F7F6FB;
+  color: #1A1730;
+}
+
+/* Brand gradient */
+.gradient-brand {
+  background: linear-gradient(135deg, #2E2560 0%, #4B3F9E 100%);
+}
+
+/* Smooth transitions */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Bilingual text alignment */
+[dir="ltr"] .text-right {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+/* Link styles */
+a {
+  color: #2FD4C4;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #8B7FE8;
+}
+
+button {
+  cursor: pointer;
+}
