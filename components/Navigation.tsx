@@ -30,14 +30,14 @@ const Navigation = ({ lang, setLang }: NavigationProps) => {
     <nav className="fixed top-0 w-full bg-white shadow-md z-50">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <a href="#home" className="flex items-center gap-2">
           <div className="w-10 h-10 gradient-brand rounded-full flex items-center justify-center">
-            <img src="/images/logo-mark.svg" alt="" className="w-7 h-auto" />
+            <img src="/images/logo-mark.svg" alt="Wameed Tech" className="w-7 h-auto" />
           </div>
           <span className="font-bold text-xl text-brand-deep">
             {lang === 'ar' ? 'وميض تك' : 'Wameed Tech'}
           </span>
-        </div>
+        </a>
 
         {/* Desktop Links */}
         <div className="hidden md:flex gap-8">
