@@ -75,7 +75,7 @@ const Footer = ({ lang }: FooterProps) => {
               </p>
               <p>
                 <a href="tel:+962786277768" className="hover:opacity-100 transition">
-                  +962 78 627 7768
+                  <span dir="ltr">+962 78 627 7768</span>
                 </a>
               </p>
               <p>Amman, Jordan</p>

@@ -183,7 +183,7 @@ const CTA = ({ lang }: CTAProps) => {
           </div>
           <div>
             <div className="text-3xl mb-2">📱</div>
-            <p className="text-gray-600 font-semibold">+962 78 627 7768</p>
+            <p className="text-gray-600 font-semibold" dir="ltr">+962 78 627 7768</p>
           </div>
           <div>
             <div className="text-3xl mb-2">📍</div>
