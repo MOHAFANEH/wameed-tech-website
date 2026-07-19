@@ -11,8 +11,8 @@ html, body {
   color: #1A1730;
 }
 
-/* Ensure all text is dark by default */
-h1, h2, h3, h4, h5, h6, p, span, div, section, article {
+/* Ensure all text is dark by default (low specificity so utility classes like text-white still win) */
+:where(h1, h2, h3, h4, h5, h6, p, span, div, section, article) {
   color: #1A1730;
 }
 
@@ -22,15 +22,12 @@ h1, h2, h3, h4, h5, h6, p, span, div, section, article {
   color: #F7F6FB;
 }
 
-.gradient-brand h1,
-.gradient-brand h2,
-.gradient-brand h3,
-.gradient-brand h4,
-.gradient-brand h5,
-.gradient-brand h6,
-.gradient-brand p,
-.gradient-brand span,
-.gradient-brand div {
+.gradient-brand :where(h1, h2, h3, h4, h5, h6, p, span, div) {
+  color: #F7F6FB;
+}
+
+/* Hero slideshow section - force light text over photo background */
+.hero-on-image :where(h1, h2, h3, h4, h5, h6, p, span, div) {
   color: #F7F6FB;
 }
 
