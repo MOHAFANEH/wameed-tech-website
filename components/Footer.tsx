@@ -84,7 +84,7 @@ const Footer = ({ lang }: FooterProps) => {
             {/* Social Links */}
             <div className="flex gap-3 mt-5">
               <a
-                href="https://www.facebook.com/wadeemtech"
+                href="https://www.facebook.com/wameedtech"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
