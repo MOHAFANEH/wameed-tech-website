@@ -103,6 +103,39 @@ All copy is stored in `messages/en.json` and `messages/ar.json`. Components read
 from these files via `next-intl`. To add or change copy, edit the message files —
 do not hardcode user-facing strings in components.
 
+## Blog
+
+The site includes a bilingual blog engine, built on `next-mdx-remote` (not
+`@next/mdx` — posts are read from disk and compiled at request time, which
+plays more simply with the site's `[locale]` routing than importing `.mdx`
+files as page modules):
+
+- English posts: `app/[locale]/blog/posts/*.mdx`
+- Arabic posts: `app/[locale]/blog/posts/*.ar.mdx`
+
+Each post has YAML frontmatter (`title`, `description`, `date`, `author`,
+`category`). The blog index (`app/[locale]/blog/page.tsx`) lists posts sorted
+by date, newest first. Individual posts (`app/[locale]/blog/[slug]/page.tsx`)
+are compiled with `compileMDX`, so full Markdown — headings, lists, links,
+bold/italic — renders correctly, not just plain text.
+
+To add a post:
+1. Create `posts/your-post-slug.mdx` (English) and `posts/your-post-slug.ar.mdx` (Arabic) — the slug (filename minus extension) must match between the two
+2. Add frontmatter at the top of each file
+3. Write the body in Markdown
+4. The post appears on `/blog` automatically and is included in `sitemap.xml`
+
+Example frontmatter:
+```yaml
+---
+title: "Your Post Title"
+description: "Short description for the blog index and meta tags"
+date: "2026-01-15"
+author: "Mohammad Afaneh"
+category: "Web Development"
+---
+```
+
 ## Deployment
 
 ### Option 1: Vercel (Recommended)

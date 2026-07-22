@@ -91,6 +91,32 @@ Check that both message files exist: `messages/en.json` and `messages/ar.json`.
 If either is missing or incomplete, the build will fail. Run `npm run build` locally
 to verify.
 
+## SEO & Discovery
+
+### Sitemap and robots.txt
+- Sitemap: `https://wameedtech.com/sitemap.xml` — auto-generated (`app/sitemap.ts`), includes home, both locale roots, the blog index, and every blog post for each locale
+- Robots: `https://wameedtech.com/robots.txt` — allows all crawlers, disallows `/api`, points to the sitemap
+
+### Structured data
+- Organization and LocalBusiness JSON-LD are embedded in every page (`app/[locale]/layout.tsx`)
+- Verify in DevTools: **View Source → search for `schema.org`** — should find 2 `<script type="application/ld+json">` blocks
+- Validate against the live URL with [Google's Rich Results Test](https://search.google.com/test/rich-results)
+- LocalBusiness does not include `openingHoursSpecification` — no confirmed real hours exist yet; add this once Mohammad confirms actual business hours
+
+### hreflang alternates
+- Every page emits `<link rel="alternate" hreflang="en">` and `hreflang="ar"`, plus a per-locale `rel="canonical"`
+- On localhost, Lighthouse's canonical audit reports a false failure because the canonical points at the production domain while Lighthouse tests `localhost` — this resolves once tested against the real deploy, not something to "fix" by pointing canonicals at localhost
+- After deploying, check Google Search Console recognizes `/en` and `/ar` as translations of each other, not duplicate content
+
+### Blog
+- Index: `/en/blog`, `/ar/blog`
+- Individual posts: `/en/blog/[slug]`, `/ar/blog/[slug]`
+- New posts are picked up automatically (see the Blog section in README.md) and appear in the sitemap on the next build — no manual sitemap editing needed
+
+### Monitoring
+- Google Search Console: monitor indexation, keywords, click-through rate
+- Vercel Analytics or Google Analytics: track organic traffic by locale and Core Web Vitals
+
 ## Environment Variables Reference
 
 See `.env.example` for a complete list of required variables. Never commit
