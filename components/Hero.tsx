@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 interface HeroProps {
   lang: string
 }
@@ -36,7 +38,7 @@ const Hero = ({ lang }: HeroProps) => {
         {/* Logo */}
         <div className="mb-8">
           <div className="w-32 h-32 mx-auto bg-white bg-opacity-10 rounded-full flex items-center justify-center border-2 border-brand-teal backdrop-blur-sm">
-            <img src="/images/logo-mark.svg" alt="Wameed Tech logo" className="w-20 h-auto" />
+            <Image src="/images/logo-mark.svg" alt="" width={80} height={60} className="w-20 h-auto" priority />
           </div>
         </div>
 
