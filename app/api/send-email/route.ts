@@ -10,7 +10,6 @@ const ses = new SESClient({
 })
 
 const FROM = 'Wameed Tech Website <noreply@wameedtech.com>'
-const TO = process.env.CONTACT_INBOX || 'mohafaneh72@gmail.com'
 
 function escapeHtml(text: string) {
   const map: Record<string, string> = {
@@ -25,6 +24,11 @@ function escapeHtml(text: string) {
 
 export async function POST(req: NextRequest) {
   try {
+    const TO = process.env.CONTACT_INBOX
+    if (!TO) {
+      throw new Error('CONTACT_INBOX environment variable is not set')
+    }
+
     const { name, email, message } = await req.json()
 
     if (!name || !email || !message) {
