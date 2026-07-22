@@ -21,13 +21,67 @@ const notoSansArabic = Noto_Sans_Arabic({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  title: 'Wameed Tech | وميض تك - Web & App Development Studio',
-  description: 'Professional web and mobile app development studio in Amman, Jordan.',
-}
+const SITE_URL = 'https://wameedtech.com'
+const SITE_TITLE = 'Wameed Tech | وميض تك - Web & App Development Studio'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const isArabic = locale === 'ar'
+  const description = isArabic
+    ? 'استوديو تطوير الويب والتطبيقات المحترف في عمّان، الأردن. نبني مواقع وتطبيقات للنمو.'
+    : 'Professional web and mobile app development studio in Amman, Jordan. We build websites and apps for growth.'
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      template: '%s | Wameed Tech',
+      default: SITE_TITLE,
+    },
+    description,
+    keywords: ['web development', 'app development', 'Amman', 'Jordan', 'custom software', 'mobile apps'],
+    authors: [{ name: 'Wameed Tech', url: SITE_URL }],
+    creator: 'Wameed Tech',
+    publisher: 'Wameed Tech',
+    robots: 'index, follow',
+    alternates: {
+      canonical: `${SITE_URL}/${locale}`,
+      languages: {
+        en: `${SITE_URL}/en`,
+        ar: `${SITE_URL}/ar`,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: isArabic ? 'ar_JO' : 'en_US',
+      url: `${SITE_URL}/${locale}`,
+      siteName: 'Wameed Tech',
+      title: SITE_TITLE,
+      description,
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: 'Wameed Tech',
+          type: 'image/png',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: SITE_TITLE,
+      description,
+      images: ['/og-image.png'],
+    },
+  }
 }
 
 export default async function LocaleLayout({
