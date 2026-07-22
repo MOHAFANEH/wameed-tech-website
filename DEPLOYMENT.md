@@ -1,247 +1,95 @@
 # Deployment Guide for Wameed Tech Website
 
-Complete step-by-step guide to deploy the website with AWS SES email integration.
+Complete guide to deploy the website to Vercel with AWS SES email integration.
 
 ## Prerequisites
 
 - GitHub account with the repository pushed
-- AWS account with SES verified domain
-- Vercel or Netlify account
-- Domain: wameedtech.com (already migrated to Route 53)
+- AWS account with SES verified domain (already done)
+- Vercel account
+- Domain: wameedtech.com (already configured in Route 53)
 
-## Step 1: Deploy to Vercel
+## Step 1: Local Setup
 
-### 1.1 Connect GitHub to Vercel
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Copy `.env.example` to `.env.local`
+4. Fill in the AWS SES credentials and `CONTACT_INBOX` in `.env.local`
+5. Test locally: `npm run dev` and submit the contact form
+
+## Step 2: Deploy to Vercel
+
+### 2.1 Connect GitHub Repository
 
 1. Go to [vercel.com](https://vercel.com)
 2. Click "New Project"
-3. Import your GitHub repository
+3. Import your GitHub repository (`MOHAFANEH/wameed-tech-website`)
 4. Click "Import"
 
-### 1.2 Configure Environment Variables
+### 2.2 Add Environment Variables
 
-In the Vercel dashboard:
+In the Vercel project dashboard:
 
-1. Go to Settings → Environment Variables
-2. Add these variables:
+1. Go to **Settings → Environment Variables**
+2. Add all four variables for **Production** environment:
 
-```
-NEXT_PUBLIC_SITE_URL=https://wameedtech.com
-NEXT_PUBLIC_AWS_REGION=us-east-1
-AWS_LAMBDA_ENDPOINT=https://your-lambda-url.execute-api.us-east-1.amazonaws.com/prod
-```
+| Variable | Value | Example |
+|----------|-------|---------|
+| `WAMEED_AWS_REGION` | AWS region | `us-east-1` |
+| `WAMEED_AWS_ACCESS_KEY_ID` | SES access key | (from AWS) |
+| `WAMEED_AWS_SECRET_ACCESS_KEY` | SES secret key | (from AWS) |
+| `CONTACT_INBOX` | Recipient email | `Info@wameedtech.com` |
 
-### 1.3 Deploy
+**Important:** Make sure these are set for the **Production** environment, not just
+Preview/Development. The contact form will fail without them.
+
+### 2.3 Deploy
 
 1. Click "Deploy"
-2. Wait for build to complete
-3. Your site is live at `https://your-project.vercel.app`
+2. Wait for the build to complete
+3. Your site will be live at `https://wameedtech.com` (via the custom domain)
 
-### 1.4 Connect Custom Domain
+### 2.4 Verify Custom Domain
 
-1. In Vercel, go to Settings → Domains
-2. Add custom domain: `wameedtech.com`
-3. Vercel will give you DNS records to add
+Vercel should already have `wameedtech.com` configured. Verify in:
+- **Settings → Domains** — confirm `wameedtech.com` is listed as a Production Domain
+- **Settings → Git** — confirm the repository is connected and `main` branch is deployed
 
-### 1.5 Update Route 53 DNS
+## Step 3: Test the Contact Form
 
-1. Go to AWS Route 53 console
-2. Select your `wameedtech.com` hosted zone
-3. Add the CNAME record from Vercel:
-   - Name: `www.wameedtech.com`
-   - Type: CNAME
-   - Value: `cname.vercel-dns.com`
-
-4. For root domain (`wameedtech.com`), add an A record:
-   - Name: `wameedtech.com`
-   - Type: A
-   - Value: `76.76.19.21` (Vercel's IP)
-
-5. Wait for DNS propagation (5-30 minutes)
-
----
-
-## Step 2: Deploy AWS Lambda Function
-
-### 2.1 Create Lambda Function
-
-1. Go to AWS Lambda Console
-2. Click "Create function"
-3. Fill in:
-   - **Name:** `wameed-tech-send-email`
-   - **Runtime:** Node.js 20.x
-   - **Role:** Create new role with basic Lambda permissions
-
-4. Click "Create function"
-
-### 2.2 Add SES Permissions
-
-1. In Lambda, go to "Configuration" → "Permissions"
-2. Click the Role name to open IAM
-3. Click "Add inline policy"
-4. Use this JSON policy:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ses:SendEmail",
-        "ses:SendRawEmail"
-      ],
-      "Resource": "*"
-    }
-  ]
-}
-```
-
-5. Click "Create policy"
-
-### 2.3 Add Lambda Code
-
-1. In Lambda function, copy the code from `lambda/send-email.js`
-2. Paste into the editor
-3. Click "Deploy"
-
-### 2.4 Create API Gateway Trigger
-
-1. In Lambda, click "Add trigger"
-2. Select "API Gateway"
-3. Click "Create new API"
-4. Configure:
-   - **API:** HTTP API
-   - **CORS:** Enable
-   - **Authorization:** None
-
-5. Click "Add"
-6. Copy the API endpoint URL
-
-### 2.5 Update Frontend API Route
-
-Update `app/api/send-email/route.ts`:
-
-```typescript
-export async function POST(req: NextRequest) {
-  try {
-    const data = await req.json()
-    
-    // Call Lambda function
-    const response = await fetch(
-      'https://your-lambda-url.execute-api.us-east-1.amazonaws.com/prod',
-      {
-        method: 'POST',
-        body: JSON.stringify(data),
-      }
-    )
-    
-    if (response.ok) {
-      return NextResponse.json({ success: true })
-    } else {
-      return NextResponse.json({ error: 'Failed' }, { status: 500 })
-    }
-  } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
-  }
-}
-```
-
----
-
-## Step 3: Email Configuration
-
-### 3.1 Verify Sender Email in SES
-
-1. Go to AWS SES Console (US East N. Virginia)
-2. Go to "Verified Identities"
-3. Click "Create Identity"
-4. Add: `noreply@wameedtech.com`
-5. Verify the email (click link in verification email)
-
-### 3.2 Test Email Sending
-
-1. Go to Lambda → Test
-2. Use this test event:
-
-```json
-{
-  "body": "{\"name\":\"Test User\",\"email\":\"your@email.com\",\"message\":\"Test message\"}"
-}
-```
-
-3. Click "Test"
-4. Check your inbox for emails
-
----
-
-## Step 4: DNS Records Summary
-
-Your Route 53 should have these records:
-
-| Name | Type | Value | TTL |
-|------|------|-------|-----|
-| wameedtech.com | A | 76.76.19.21 | 3600 |
-| wameedtech.com | MX | 10 mx.wameedtech.com (for Gmail forwarding) | 3600 |
-| wameedtech.com | TXT | DKIM records from SES | Auto |
-| www.wameedtech.com | CNAME | cname.vercel-dns.com | 3600 |
-| noreply | CNAME | wameedtech.com | Auto |
-
----
-
-## Step 5: Production Checklist
-
-- [ ] Website deployed and live at wameedtech.com
-- [ ] Domain DNS configured in Route 53
-- [ ] SES emails verified (domain + noreply@wameedtech.com)
-- [ ] Lambda function created and tested
-- [ ] API Gateway endpoint configured
-- [ ] Frontend API route updated with Lambda endpoint
-- [ ] Contact form tested end-to-end
-- [ ] Emails send to Info@wameedtech.com
-- [ ] Confirmation emails sent to users
-- [ ] Gmail forwarding set up to receive emails
-- [ ] SSL certificate active (auto via Vercel)
-
----
+1. Visit [wameedtech.com](https://wameedtech.com) in your browser
+2. Fill out the contact form
+3. Submit
+4. Check the inbox at `CONTACT_INBOX` to confirm the email arrived
 
 ## Troubleshooting
 
-### Emails not sending?
+### Contact form returns a 500 error
 
-1. Check SES status (must be out of sandbox)
-2. Verify sender email in SES
-3. Check Lambda logs in CloudWatch
-4. Verify IAM role has SES permissions
-5. Check API Gateway CORS settings
+1. Check Vercel logs: **Deployments → [latest] → Logs**
+2. Look for error message about missing environment variables
+3. Verify all four SES variables are set in **Settings → Environment Variables** for Production
+4. If `CONTACT_INBOX` is missing, add it and redeploy
 
-### Domain not resolving?
+### Emails not arriving at CONTACT_INBOX
 
-1. Check Route 53 records
-2. Wait for DNS propagation (can take 24-48 hours)
-3. Verify nameservers point to Route 53
-4. Use `nslookup wameedtech.com` to check
+1. Check SES status in AWS Console: **SES → Account Dashboard**
+2. Verify the sender domain is verified in SES: **SES → Verified Identities**
+3. If SES is still in sandbox mode, add the recipient email to the verified identities
+4. Check spam/junk folder in your email client
 
-### Form not submitting?
+### Domain not pointing to Vercel
 
-1. Check browser console for errors
-2. Verify API endpoint in code
-3. Check CORS settings on API Gateway
-4. Test Lambda function directly
+1. Go to AWS Route 53 console
+2. Select `wameedtech.com` hosted zone
+3. Verify DNS records match what Vercel shows in **Settings → Domains**
+4. Wait for DNS propagation (can take 5-30 minutes, or up to 48 hours)
 
----
+## Environment Variables Reference
 
-## Next Steps
-
-1. Monitor SES usage in CloudWatch
-2. Set up CloudWatch alarms for Lambda errors
-3. Add analytics (Google Analytics, Vercel Analytics)
-4. Set up SSL monitoring
-5. Regular backups of website code
-6. Monitor email bounces/complaints in SES
-
----
+See `.env.example` for a complete list of required variables. Never commit
+`.env.local` to Git — it is listed in `.gitignore`.
 
 ## Support
 
-For issues: Info@wameedtech.com
+For deployment issues: Info@wameedtech.com

@@ -44,14 +44,23 @@ npm run dev
 
 ## Environment Variables
 
-Create a `.env.local` file:
+Create a `.env.local` file based on `.env.example`:
+
+```bash
+cp .env.example .env.local
+```
+
+Then fill in your actual values:
 
 ```env
-# AWS SES Configuration (set during deployment)
-NEXT_PUBLIC_AWS_REGION=us-east-1
-AWS_SES_ACCESS_KEY_ID=your_access_key
-AWS_SES_SECRET_ACCESS_KEY=your_secret_key
+# AWS SES Configuration
+WAMEED_AWS_REGION=us-east-1
+WAMEED_AWS_ACCESS_KEY_ID=your_access_key_here
+WAMEED_AWS_SECRET_ACCESS_KEY=your_secret_key_here
+CONTACT_INBOX=Info@wameedtech.com
 ```
+
+See `.env.example` for all required variables.
 
 ## Project Structure
 
@@ -96,16 +105,19 @@ vercel
 4. Set environment variables
 5. Deploy!
 
-## AWS SES Setup
+## Email Setup
 
-To enable email sending:
+The contact form sends emails via AWS SES directly from the Next.js API route
+(`app/api/send-email/route.ts`). No Lambda function is needed.
 
-1. Set up SES in AWS Console (already done)
-2. Get SES credentials (Access Key, Secret Key)
-3. Create AWS Lambda function for sending emails
-4. Update API route to call Lambda
+To enable:
+1. Get AWS SES credentials (Access Key ID and Secret Access Key)
+2. Add them to your `.env.local` (see Environment Variables section)
+3. Set `CONTACT_INBOX` to the email address that should receive form submissions
+4. Test by submitting the contact form on your local dev server
 
-Lambda function code will be provided separately.
+**Important:** The `CONTACT_INBOX` environment variable is required in production.
+If it is missing, the contact form will fail silently.
 
 ## Customization
 
@@ -150,7 +162,7 @@ npm start
 **Form not sending emails?**
 - Check AWS SES credentials
 - Verify domain is verified in SES
-- Check Lambda function is deployed
+- Check `CONTACT_INBOX` is set (the API route fails loudly if it's missing)
 
 **Language toggle not working?**
 - Clear browser cache
