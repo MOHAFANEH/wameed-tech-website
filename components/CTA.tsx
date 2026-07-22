@@ -124,13 +124,18 @@ const CTA = () => {
             )}
 
             {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 gradient-brand text-white font-bold rounded-lg hover:opacity-90 transition disabled:opacity-50"
-            >
-              {loading ? t('form.sending') : t('form.submit')}
-            </button>
+            {/* pe-20 on mobile keeps this clear of the fixed WhatsApp button's
+                corner (56px button + 24px offset = 80px) while scrolling; not
+                needed from md up where the form is far wider than the FAB. */}
+            <div className="pe-20 md:pe-0">
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3 gradient-brand text-white font-bold rounded-lg hover:opacity-90 transition disabled:opacity-50"
+              >
+                {loading ? t('form.sending') : t('form.submit')}
+              </button>
+            </div>
           </form>
         </div>
         </Reveal>

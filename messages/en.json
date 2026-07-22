@@ -7,6 +7,10 @@
     "brand": "Wameed Tech",
     "language": "العربية"
   },
+  "whatsapp": {
+    "aria_label": "Chat on WhatsApp",
+    "prefill_message": "Hi Wameed Tech, I'd like to discuss a new project."
+  },
   "hero": {
     "title": "Wameed Tech",
     "subtitle": "وميض تك",

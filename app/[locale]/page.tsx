@@ -5,6 +5,7 @@ import Services from '@/components/Services'
 import Clients from '@/components/Clients'
 import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
+import WhatsAppButton from '@/components/WhatsAppButton'
 
 export default async function Home({
   params,
@@ -22,6 +23,7 @@ export default async function Home({
       <Clients />
       <CTA />
       <Footer />
+      <WhatsAppButton />
     </div>
   )
 }

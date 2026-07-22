@@ -7,6 +7,10 @@
     "brand": "وميض تك",
     "language": "English"
   },
+  "whatsapp": {
+    "aria_label": "تواصل عبر واتساب",
+    "prefill_message": "مرحباً وميض تك، أرغب في مناقشة مشروع جديد."
+  },
   "hero": {
     "title": "وميض تك",
     "subtitle": "Wameed Tech",
