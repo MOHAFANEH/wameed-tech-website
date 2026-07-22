@@ -84,6 +84,10 @@
     "role": "Founder & Lead Developer",
     "bio": "Mohammad founded Wameed Tech in 2026, bringing over a decade of hands-on development experience. Clients work directly with the developer who architects and builds their product — no agency layers, no handoffs."
   },
+  "testimonials": {
+    "section_title": "What Clients Say",
+    "placeholder_text": "More client stories coming soon."
+  },
   "cta": {
     "section_title": "Contact Us",
     "section_subtitle": "Get in Touch",
