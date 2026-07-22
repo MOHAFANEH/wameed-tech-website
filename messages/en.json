@@ -37,14 +37,30 @@
       { "label": "Support", "value": "Ongoing support and maintenance after launch" }
     ]
   },
-  "clients": {
-    "section_title": "Our Clients",
+  "work": {
+    "section_title": "Our Work",
     "section_subtitle": "Projects We're Proud Of",
     "description": "We have had the pleasure of working with innovative companies across various industries.",
     "view_project": "View Project",
     "projects": [
-      { "icon": "🧺", "name": "Flashwash", "category": "E-Commerce & Logistics", "description": "Laundry & Dry Cleaning Pickup & Delivery Service", "link": "flashwash.co", "color": "bg-blue-50" },
-      { "icon": "🎯", "name": "Leap on Deals", "category": "E-Commerce", "description": "Online marketplace for discovering amazing deals and discounts", "link": "www.leapondeals.com", "color": "bg-purple-50" }
+      {
+        "image": "/images/work/flashwash.png",
+        "imageAlt": "FlashWash website homepage showing the WhatsApp-based ordering flow and per-item laundry pricing",
+        "name": "Flashwash",
+        "category": "Laundry & Delivery Platform",
+        "description": "Wameed Tech designed and built the FlashWash website — a bilingual laundry and dry-cleaning platform centered on frictionless WhatsApp ordering. Customers book a pickup in one message; the site handles service browsing, transparent per-item pricing, and door-to-door delivery scheduling.",
+        "techStack": ["HTML", "CSS", "JavaScript"],
+        "link": "flashwash.co"
+      },
+      {
+        "image": "/images/work/leapondeals.png",
+        "imageAlt": "Leap on Deals homepage showing the multi-category product marketplace and deal-of-the-day merchandising",
+        "name": "Leap on Deals",
+        "category": "E-Commerce Marketplace",
+        "description": "Wameed Tech built Leap on Deals — a multi-category e-commerce marketplace with product browsing, deal-of-the-day merchandising, cart and wishlist, customer accounts, and full checkout across clothing, electronics, and more.",
+        "techStack": ["WooCommerce", "Node"],
+        "link": "www.leapondeals.com"
+      }
     ],
     "stats": [
       { "number": "20+", "label": "Projects Completed" },
@@ -77,7 +93,7 @@
     "crafted_by": "Crafted with ❤️ by Wameed Tech",
     "links": [
       { "label": "About", "href": "#about" },
-      { "label": "Projects", "href": "#clients" },
+      { "label": "Projects", "href": "#work" },
       { "label": "Contact", "href": "#contact" }
     ]
   }

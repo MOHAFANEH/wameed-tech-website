@@ -16,13 +16,13 @@ const Navigation = () => {
     en: [
       { label: 'Home', href: '#home' },
       { label: 'About', href: '#about' },
-      { label: 'Clients', href: '#clients' },
+      { label: 'Work', href: '#work' },
       { label: 'Contact', href: '#contact' },
     ],
     ar: [
       { label: 'الرئيسية', href: '#home' },
       { label: 'عننا', href: '#about' },
-      { label: 'عملاؤنا', href: '#clients' },
+      { label: 'أعمالنا', href: '#work' },
       { label: 'تواصل معنا', href: '#contact' },
     ],
   }

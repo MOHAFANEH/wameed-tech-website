@@ -1,13 +1,15 @@
 import { useTranslations } from 'next-intl'
 import Reveal from './Reveal'
+import CaseStudy from './CaseStudy'
 
 interface Project {
-  icon: string
+  image: string
+  imageAlt: string
   name: string
   category: string
   description: string
+  techStack: string[]
   link: string
-  color: string
 }
 
 interface Stat {
@@ -16,12 +18,12 @@ interface Stat {
 }
 
 const Clients = () => {
-  const t = useTranslations('clients')
+  const t = useTranslations('work')
   const projects = t.raw('projects') as Project[]
   const stats = t.raw('stats') as Stat[]
 
   return (
-    <section id="clients" className="py-20 bg-white">
+    <section id="work" className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <Reveal>
@@ -32,26 +34,20 @@ const Clients = () => {
           </div>
         </Reveal>
 
-        {/* Projects Grid */}
+        {/* Case Studies */}
         <div className="grid md:grid-cols-2 gap-12">
           {projects.map((project, i) => (
             <Reveal key={i} delay={i * 200}>
-              <div
-                className={`${project.color} rounded-lg p-12 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-s-4 border-brand-teal min-h-80 h-full`}
-              >
-                <div className="text-7xl mb-6">{project.icon}</div>
-                <h3 className="text-3xl font-bold text-brand-deep mb-3">{project.name}</h3>
-                <p className="text-brand-indigo text-base font-semibold mb-4">{project.category}</p>
-                <p className="text-gray-700 mb-8 text-lg">{project.description}</p>
-                <a
-                  href={`https://${project.link}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-6 py-2 bg-brand-teal text-brand-deep font-semibold rounded-lg hover:bg-brand-lilac transition"
-                >
-                  {t('view_project')}
-                </a>
-              </div>
+              <CaseStudy
+                image={project.image}
+                imageAlt={project.imageAlt}
+                name={project.name}
+                category={project.category}
+                description={project.description}
+                techStack={project.techStack}
+                link={project.link}
+                viewProjectLabel={t('view_project')}
+              />
             </Reveal>
           ))}
         </div>
