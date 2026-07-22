@@ -84,6 +84,40 @@ export async function generateMetadata({
   }
 }
 
+// LocalBusiness intentionally omits openingHoursSpecification — no
+// confirmed real business hours to publish as fact. Add it once
+// Mohammad confirms actual hours.
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Wameed Tech',
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/logo-circle.png`,
+  description: 'Professional web and mobile app development studio in Amman, Jordan.',
+  sameAs: ['https://www.facebook.com/wameedtech', 'https://www.instagram.com/wameedtech'],
+}
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Wameed Tech',
+  image: `${SITE_URL}/images/logo-circle.png`,
+  description: 'Web and App Development Studio',
+  url: SITE_URL,
+  telephone: '+962786277768',
+  email: 'Info@wameedtech.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Amman',
+    addressCountry: 'JO',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 31.9454,
+    longitude: 35.9284,
+  },
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -105,6 +139,16 @@ export default async function LocaleLayout({
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
       className={`${comfortaa.variable} ${notoSansArabic.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+      </head>
       <body className="font-comfortaa bg-brand-bg text-brand-ink">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
