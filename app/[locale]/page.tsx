@@ -14,18 +14,14 @@ export default async function Home({
   const { locale } = await params
   setRequestLocale(locale)
 
-  // NOTE (Phase 2, commit 1): components below still receive `lang` and use
-  // their internal content objects. Commit 3 removes this prop and switches
-  // them to useTranslations(). Navigation is already locale-aware via
-  // useLocale(), so it takes no prop.
   return (
     <div className="min-h-screen">
       <Navigation />
-      <Hero lang={locale} />
-      <Services lang={locale} />
-      <Clients lang={locale} />
-      <CTA lang={locale} />
-      <Footer lang={locale} />
+      <Hero />
+      <Services />
+      <Clients />
+      <CTA />
+      <Footer />
     </div>
   )
 }

@@ -1,64 +1,24 @@
+import { useTranslations } from 'next-intl'
 import Reveal from './Reveal'
 
-interface ClientsProps {
-  lang: string
+interface Project {
+  icon: string
+  name: string
+  category: string
+  description: string
+  link: string
+  color: string
 }
 
-const Clients = ({ lang }: ClientsProps) => {
-  const content = {
-    en: {
-      title: 'Our Clients',
-      subtitle: 'Projects We\'re Proud Of',
-      description: 'We have had the pleasure of working with innovative companies across various industries.',
-    },
-    ar: {
-      title: 'عملاؤنا',
-      subtitle: 'مشاريع نفخر بها',
-      description: 'كان لدينا شرف العمل مع شركات مبتكرة عبر قطاعات مختلفة.',
-    },
-  }
+interface Stat {
+  number: string
+  label: string
+}
 
-  const projects = {
-    en: [
-      {
-        name: 'Flashwash',
-        description: 'Laundry & Dry Cleaning Pickup & Delivery Service',
-        link: 'flashwash.co',
-        category: 'E-Commerce & Logistics',
-        color: 'bg-blue-50',
-        icon: '🧺',
-      },
-      {
-        name: 'Leap on Deals',
-        description: 'Online marketplace for discovering amazing deals and discounts',
-        link: 'www.leapondeals.com',
-        category: 'E-Commerce',
-        color: 'bg-purple-50',
-        icon: '🎯',
-      },
-    ],
-    ar: [
-      {
-        name: 'فلاش واش',
-        description: 'خدمة الغسيل والتنظيف الجاف مع التوصيل',
-        link: 'flashwash.co',
-        category: 'التجارة الإلكترونية واللوجستيات',
-        color: 'bg-blue-50',
-        icon: '🧺',
-      },
-      {
-        name: 'قفزة العروض',
-        description: 'منصة تسوق إلكترونية لاكتشاف أفضل العروض والخصومات',
-        link: 'www.leapondeals.com',
-        category: 'التجارة الإلكترونية',
-        color: 'bg-purple-50',
-        icon: '🎯',
-      },
-    ],
-  }
-
-  const c = content[lang as keyof typeof content]
-  const p = projects[lang as keyof typeof projects]
+const Clients = () => {
+  const t = useTranslations('clients')
+  const projects = t.raw('projects') as Project[]
+  const stats = t.raw('stats') as Stat[]
 
   return (
     <section id="clients" className="py-20 bg-white">
@@ -66,15 +26,15 @@ const Clients = ({ lang }: ClientsProps) => {
         {/* Header */}
         <Reveal>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{c.title}</h2>
-            <p className="text-2xl text-brand-indigo mb-4">{c.subtitle}</p>
-            <p className="text-lg text-gray-600">{c.description}</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{t('section_title')}</h2>
+            <p className="text-2xl text-brand-indigo mb-4">{t('section_subtitle')}</p>
+            <p className="text-lg text-gray-600">{t('description')}</p>
           </div>
         </Reveal>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-12">
-          {p.map((project, i) => (
+          {projects.map((project, i) => (
             <Reveal key={i} delay={i * 200}>
               <div
                 className={`${project.color} rounded-lg p-12 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-l-4 border-brand-teal min-h-80 h-full`}
@@ -89,7 +49,7 @@ const Clients = ({ lang }: ClientsProps) => {
                   rel="noopener noreferrer"
                   className="inline-block px-6 py-2 bg-brand-teal text-brand-deep font-semibold rounded-lg hover:bg-brand-lilac transition"
                 >
-                  {lang === 'en' ? 'View Project' : 'اعرض المشروع'}
+                  {t('view_project')}
                 </a>
               </div>
             </Reveal>
@@ -98,17 +58,11 @@ const Clients = ({ lang }: ClientsProps) => {
 
         {/* Stats */}
         <div className="mt-20 grid md:grid-cols-3 gap-8 text-center">
-          {[
-            { num: '20+', en: 'Projects Completed', ar: 'مشاريع مكتملة' },
-            { num: '15+', en: 'Happy Clients', ar: 'عملاء سعداء' },
-            { num: '5+', en: 'Years Experience', ar: 'سنوات من الخبرة' },
-          ].map((stat, i) => (
+          {stats.map((stat, i) => (
             <Reveal key={i} delay={i * 150}>
               <div>
-                <div className="text-4xl font-bold text-brand-indigo">{stat.num}</div>
-                <p className="text-gray-600 text-lg">
-                  {lang === 'en' ? stat.en : stat.ar}
-                </p>
+                <div className="text-4xl font-bold text-brand-indigo">{stat.number}</div>
+                <p className="text-gray-600 text-lg">{stat.label}</p>
               </div>
             </Reveal>
           ))}
