@@ -2,14 +2,15 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
+import { useLocale } from 'next-intl'
+import { Link, usePathname } from '@/i18n/navigation'
 
-interface NavigationProps {
-  lang: string
-  setLang: (lang: string) => void
-}
-
-const Navigation = ({ lang, setLang }: NavigationProps) => {
+const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const locale = useLocale()
+  const pathname = usePathname()
+  const otherLocale = locale === 'en' ? 'ar' : 'en'
+  const otherLabel = locale === 'en' ? 'العربية' : 'English'
 
   const navLinks = {
     en: [
@@ -35,13 +36,13 @@ const Navigation = ({ lang, setLang }: NavigationProps) => {
             <Image src="/images/logo-mark.svg" alt="Wameed Tech" width={28} height={21} className="w-7 h-auto" priority />
           </div>
           <span className="font-bold text-xl text-brand-deep">
-            {lang === 'ar' ? 'وميض تك' : 'Wameed Tech'}
+            {locale === 'ar' ? 'وميض تك' : 'Wameed Tech'}
           </span>
         </a>
 
         {/* Desktop Links */}
         <div className="hidden md:flex gap-8">
-          {navLinks[lang as keyof typeof navLinks].map((link) => (
+          {navLinks[locale as keyof typeof navLinks].map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -54,17 +55,20 @@ const Navigation = ({ lang, setLang }: NavigationProps) => {
 
         {/* Language Toggle + Mobile Menu */}
         <div className="flex items-center gap-4">
-          <button
-            onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
+          <Link
+            href={pathname}
+            locale={otherLocale}
             className="px-4 py-2 bg-brand-teal text-brand-deep rounded-lg font-medium hover:bg-brand-lilac transition"
           >
-            {lang === 'en' ? 'العربية' : 'English'}
-          </button>
+            {otherLabel}
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden text-brand-deep"
+            aria-label={locale === 'ar' ? 'القائمة' : 'Menu'}
+            aria-expanded={mobileMenuOpen}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -77,7 +81,7 @@ const Navigation = ({ lang, setLang }: NavigationProps) => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200 py-4 px-4">
           <div className="flex flex-col gap-4">
-            {navLinks[lang as keyof typeof navLinks].map((link) => (
+            {navLinks[locale as keyof typeof navLinks].map((link) => (
               <a
                 key={link.href}
                 href={link.href}

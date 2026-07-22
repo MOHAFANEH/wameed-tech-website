@@ -1,13 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import Reveal from './Reveal'
 
-interface CTAProps {
-  lang: string
-}
-
-const CTA = ({ lang }: CTAProps) => {
+const CTA = () => {
+  const t = useTranslations('cta')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,39 +13,6 @@ const CTA = ({ lang }: CTAProps) => {
   })
   const [status, setStatus] = useState('')
   const [loading, setLoading] = useState(false)
-
-  const content = {
-    en: {
-      title: 'Contact Us',
-      subtitle: 'Get in Touch',
-      description: 'Have a project in mind? Let\'s talk about how we can help your business grow.',
-      form: {
-        name: 'Your Name',
-        email: 'Your Email',
-        message: 'Your Message',
-        submit: 'Send Message',
-        sending: 'Sending...',
-        success: 'Message sent successfully! We\'ll get back to you soon.',
-        error: 'Failed to send message. Please try again.',
-      },
-    },
-    ar: {
-      title: 'تواصل معنا',
-      subtitle: 'هل لديك مشروع؟',
-      description: 'هل لديك مشروع في الذهن؟ دعنا نتحدث عن كيفية مساعدة عملك على النمو.',
-      form: {
-        name: 'اسمك',
-        email: 'بريدك الإلكتروني',
-        message: 'رسالتك',
-        submit: 'إرسال الرسالة',
-        sending: 'جاري الإرسال...',
-        success: 'تم إرسال الرسالة بنجاح! سنرد عليك قريباً.',
-        error: 'فشل الإرسال. يرجى المحاولة مرة أخرى.',
-      },
-    },
-  }
-
-  const c = content[lang as keyof typeof content]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -62,7 +27,6 @@ const CTA = ({ lang }: CTAProps) => {
     setStatus('')
 
     try {
-      // Call AWS Lambda function (we'll set this up later)
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -89,9 +53,9 @@ const CTA = ({ lang }: CTAProps) => {
         {/* Header */}
         <Reveal>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{c.title}</h2>
-            <p className="text-2xl text-brand-indigo mb-4">{c.subtitle}</p>
-            <p className="text-lg text-gray-600">{c.description}</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{t('section_title')}</h2>
+            <p className="text-2xl text-brand-indigo mb-4">{t('section_subtitle')}</p>
+            <p className="text-lg text-gray-600">{t('description')}</p>
           </div>
         </Reveal>
 
@@ -102,7 +66,7 @@ const CTA = ({ lang }: CTAProps) => {
             {/* Name */}
             <div>
               <label className="block text-sm font-semibold text-brand-deep mb-2">
-                {c.form.name}
+                {t('form.name_label')}
               </label>
               <input
                 type="text"
@@ -111,14 +75,14 @@ const CTA = ({ lang }: CTAProps) => {
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal"
-                placeholder={c.form.name}
+                placeholder={t('form.name_label')}
               />
             </div>
 
             {/* Email */}
             <div>
               <label className="block text-sm font-semibold text-brand-deep mb-2">
-                {c.form.email}
+                {t('form.email_label')}
               </label>
               <input
                 type="email"
@@ -127,14 +91,14 @@ const CTA = ({ lang }: CTAProps) => {
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal"
-                placeholder={c.form.email}
+                placeholder={t('form.email_label')}
               />
             </div>
 
             {/* Message */}
             <div>
               <label className="block text-sm font-semibold text-brand-deep mb-2">
-                {c.form.message}
+                {t('form.message_label')}
               </label>
               <textarea
                 name="message"
@@ -143,19 +107,19 @@ const CTA = ({ lang }: CTAProps) => {
                 required
                 rows={5}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal resize-none"
-                placeholder={c.form.message}
+                placeholder={t('form.message_label')}
               />
             </div>
 
             {/* Status Messages */}
             {status === 'success' && (
               <div className="p-4 bg-green-100 text-green-700 rounded-lg font-semibold">
-                {c.form.success}
+                {t('form.success')}
               </div>
             )}
             {status === 'error' && (
               <div className="p-4 bg-red-100 text-red-700 rounded-lg font-semibold">
-                {c.form.error}
+                {t('form.error')}
               </div>
             )}
 
@@ -165,7 +129,7 @@ const CTA = ({ lang }: CTAProps) => {
               disabled={loading}
               className="w-full py-3 gradient-brand text-white font-bold rounded-lg hover:opacity-90 transition disabled:opacity-50"
             >
-              {loading ? c.form.sending : c.form.submit}
+              {loading ? t('form.sending') : t('form.submit')}
             </button>
           </form>
         </div>
@@ -188,7 +152,7 @@ const CTA = ({ lang }: CTAProps) => {
           <div>
             <div className="text-3xl mb-2">📍</div>
             <p className="text-gray-600 font-semibold">
-              {lang === 'en' ? 'Amman, Jordan' : 'عمّان، الأردن'}
+              {t('location')}
             </p>
           </div>
         </div>

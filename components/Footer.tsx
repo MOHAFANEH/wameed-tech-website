@@ -1,32 +1,14 @@
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
-interface FooterProps {
-  lang: string
+interface FooterLink {
+  label: string
+  href: string
 }
 
-const Footer = ({ lang }: FooterProps) => {
-  const content = {
-    en: {
-      copyright: '© 2026 Wameed Tech. All rights reserved.',
-      tagline: 'Building digital solutions for businesses that dream big.',
-      links: [
-        { label: 'About', href: '#about' },
-        { label: 'Projects', href: '#clients' },
-        { label: 'Contact', href: '#contact' },
-      ],
-    },
-    ar: {
-      copyright: '© 2026 وميض تك. جميع الحقوق محفوظة.',
-      tagline: 'نبني حلولاً رقمية للشركات التي تحلم بالكبر.',
-      links: [
-        { label: 'عننا', href: '#about' },
-        { label: 'مشاريعنا', href: '#clients' },
-        { label: 'تواصل', href: '#contact' },
-      ],
-    },
-  }
-
-  const c = content[lang as keyof typeof content]
+const Footer = () => {
+  const t = useTranslations('footer')
+  const links = t.raw('links') as FooterLink[]
 
   return (
     <footer className="gradient-brand text-white py-16">
@@ -40,19 +22,19 @@ const Footer = ({ lang }: FooterProps) => {
                 <Image src="/images/logo-mark.svg" alt="Wameed Tech" width={28} height={21} className="w-7 h-auto" />
               </div>
               <span className="text-2xl font-bold">
-                {lang === 'ar' ? 'وميض تك' : 'Wameed Tech'}
+                {t('brand')}
               </span>
             </div>
-            <p className="opacity-80">{c.tagline}</p>
+            <p className="opacity-80">{t('tagline')}</p>
           </div>
 
           {/* Links */}
           <div>
             <h4 className="text-lg font-bold mb-4">
-              {lang === 'en' ? 'Quick Links' : 'روابط سريعة'}
+              {t('quick_links_title')}
             </h4>
             <div className="space-y-2">
-              {c.links.map((link, i) => (
+              {links.map((link, i) => (
                 <a
                   key={i}
                   href={link.href}
@@ -67,7 +49,7 @@ const Footer = ({ lang }: FooterProps) => {
           {/* Contact */}
           <div>
             <h4 className="text-lg font-bold mb-4">
-              {lang === 'en' ? 'Contact' : 'تواصل'}
+              {t('contact_title')}
             </h4>
             <div className="space-y-2 opacity-80">
               <p>
@@ -80,7 +62,7 @@ const Footer = ({ lang }: FooterProps) => {
                   <span dir="ltr">+962 78 627 7768</span>
                 </a>
               </p>
-              <p>{lang === 'en' ? 'Amman, Jordan' : 'عمّان، الأردن'}</p>
+              <p>{t('location')}</p>
             </div>
 
             {/* Social Links */}
@@ -125,11 +107,9 @@ const Footer = ({ lang }: FooterProps) => {
         {/* Divider */}
         <div className="border-t border-white border-opacity-20 py-8">
           <div className="text-center opacity-80">
-            <p>{c.copyright}</p>
+            <p>{t('copyright')}</p>
             <p className="text-sm mt-2">
-              {lang === 'en'
-                ? 'Crafted with ❤️ by Wameed Tech'
-                : 'صُنعت بـ ❤️ من قبل وميض تك'}
+              {t('crafted_by')}
             </p>
           </div>
         </div>
