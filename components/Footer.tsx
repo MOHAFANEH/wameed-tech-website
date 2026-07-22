@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 
 interface FooterLink {
   label: string
@@ -8,6 +9,7 @@ interface FooterLink {
 
 const Footer = () => {
   const t = useTranslations('footer')
+  const tNav = useTranslations('navigation')
   const links = t.raw('links') as FooterLink[]
 
   return (
@@ -43,6 +45,9 @@ const Footer = () => {
                   {link.label}
                 </a>
               ))}
+              <Link href="/blog" className="block opacity-80 hover:opacity-100 transition">
+                {tNav('blog')}
+              </Link>
             </div>
           </div>
 
