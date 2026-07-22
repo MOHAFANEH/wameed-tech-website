@@ -23,7 +23,7 @@ const Hero = ({ lang }: HeroProps) => {
   const c = content[lang as keyof typeof content]
 
   return (
-    <section id="home" className="hero-on-image relative pt-32 pb-20 text-white overflow-hidden">
+    <section id="home" className="relative pt-32 pb-20 text-white overflow-hidden">
       {/* Decorative background: brand gradient + soft circles (pure CSS, no assets) */}
       <div className="absolute inset-0 bg-gradient-to-br from-brand-deep to-brand-indigo" />
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">

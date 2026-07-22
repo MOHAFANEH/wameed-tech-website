@@ -176,7 +176,7 @@ const CTA = ({ lang }: CTAProps) => {
           <div>
             <div className="text-3xl mb-2">📧</div>
             <p className="text-gray-600">
-              <a href="mailto:info@wameedtech.com" className="font-semibold hover:text-brand-teal">
+              <a href="mailto:info@wameedtech.com" className="font-semibold text-brand-indigo hover:text-brand-deep hover:underline">
                 Info@wameedtech.com
               </a>
             </p>
