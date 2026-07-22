@@ -1,1 +1,78 @@
-{}
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "clients": "Clients",
+    "contact": "Contact",
+    "brand": "Wameed Tech",
+    "language": "العربية"
+  },
+  "hero": {
+    "title": "Wameed Tech",
+    "subtitle": "وميض تك",
+    "tagline": "Professional Web & App Development Studio",
+    "description": "We design and develop beautiful, fast, and scalable web and mobile applications for businesses that want to grow.",
+    "cta_primary": "Start Your Project",
+    "cta_secondary": "Learn More"
+  },
+  "services": {
+    "section_title": "About Us",
+    "section_subtitle": "Why Choose Wameed Tech?",
+    "description": "Wameed Tech is a web and mobile app development studio based in Amman, Jordan. We specialize in creating custom digital solutions that help businesses grow and succeed in the digital world.",
+    "items": [
+      { "icon": "🌐", "title": "Web Development", "description": "Modern, fast, and scalable websites built with the latest technologies." },
+      { "icon": "📱", "title": "Mobile Apps", "description": "Native and cross-platform mobile applications for iOS and Android." },
+      { "icon": "⚙️", "title": "Custom Solutions", "description": "Tailored software solutions designed specifically for your business needs." },
+      { "icon": "💡", "title": "Strategy & Consulting", "description": "Expert guidance to help you navigate your digital transformation." }
+    ],
+    "values_title": "Our Core Values",
+    "values": [
+      { "label": "Quality", "value": "Clean, maintainable code and best practices" },
+      { "label": "Speed", "value": "Fast development without compromising quality" },
+      { "label": "Support", "value": "Ongoing support and maintenance after launch" }
+    ]
+  },
+  "clients": {
+    "section_title": "Our Clients",
+    "section_subtitle": "Projects We're Proud Of",
+    "description": "We have had the pleasure of working with innovative companies across various industries.",
+    "view_project": "View Project",
+    "projects": [
+      { "icon": "🧺", "name": "Flashwash", "category": "E-Commerce & Logistics", "description": "Laundry & Dry Cleaning Pickup & Delivery Service", "link": "flashwash.co", "color": "bg-blue-50" },
+      { "icon": "🎯", "name": "Leap on Deals", "category": "E-Commerce", "description": "Online marketplace for discovering amazing deals and discounts", "link": "www.leapondeals.com", "color": "bg-purple-50" }
+    ],
+    "stats": [
+      { "number": "20+", "label": "Projects Completed" },
+      { "number": "15+", "label": "Happy Clients" },
+      { "number": "5+", "label": "Years Experience" }
+    ]
+  },
+  "cta": {
+    "section_title": "Contact Us",
+    "section_subtitle": "Get in Touch",
+    "description": "Have a project in mind? Let's talk about how we can help your business grow.",
+    "form": {
+      "name_label": "Your Name",
+      "email_label": "Your Email",
+      "message_label": "Your Message",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully! We'll get back to you soon.",
+      "error": "Failed to send message. Please try again."
+    },
+    "location": "Amman, Jordan"
+  },
+  "footer": {
+    "tagline": "Building digital solutions for businesses that dream big.",
+    "quick_links_title": "Quick Links",
+    "contact_title": "Contact",
+    "location": "Amman, Jordan",
+    "copyright": "© 2026 Wameed Tech. All rights reserved.",
+    "crafted_by": "Crafted with ❤️ by Wameed Tech",
+    "links": [
+      { "label": "About", "href": "#about" },
+      { "label": "Projects", "href": "#clients" },
+      { "label": "Contact", "href": "#contact" }
+    ]
+  }
+}
