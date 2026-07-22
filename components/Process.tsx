@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Reveal from './Reveal'
 
 interface Step {
@@ -8,6 +8,7 @@ interface Step {
 
 const Process = () => {
   const t = useTranslations('process')
+  const locale = useLocale()
   const steps = t.raw('steps') as Step[]
 
   return (
@@ -19,10 +20,18 @@ const Process = () => {
           </h2>
         </Reveal>
 
-        <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-4">
+        {/* dir="ltr" here keeps the 5 steps in a fixed visual left-to-right
+            order (1..5) — this is a numbered timeline, not reading content,
+            so it should not mirror under RTL like a normal grid would. Each
+            step's own wrapper below restores the correct text direction for
+            its title. */}
+        <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-4" dir="ltr">
           {steps.map((step, i) => (
             <Reveal key={i} delay={i * 100} className="flex-1">
-              <div className="flex md:flex-col items-center md:text-center gap-4 md:gap-3">
+              <div
+                className="flex md:flex-col items-center md:text-center gap-4 md:gap-3"
+                dir={locale === 'ar' ? 'rtl' : 'ltr'}
+              >
                 <div className="shrink-0 w-12 h-12 rounded-full bg-brand-teal text-brand-deep font-bold text-xl flex items-center justify-center">
                   {step.number}
                 </div>
