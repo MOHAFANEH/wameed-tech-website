@@ -79,6 +79,11 @@
     ],
     "closing_line": "Every project starts with a free scoping call."
   },
+  "founder": {
+    "name": "Mohammad Afaneh",
+    "role": "Founder & Lead Developer",
+    "bio": "Mohammad founded Wameed Tech in 2026, bringing over a decade of hands-on development experience. Clients work directly with the developer who architects and builds their product — no agency layers, no handoffs."
+  },
   "cta": {
     "section_title": "Contact Us",
     "section_subtitle": "Get in Touch",
