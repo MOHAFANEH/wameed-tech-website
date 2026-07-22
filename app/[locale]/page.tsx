@@ -3,6 +3,7 @@ import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import Services from '@/components/Services'
 import Clients from '@/components/Clients'
+import Process from '@/components/Process'
 import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
 import WhatsAppButton from '@/components/WhatsAppButton'
@@ -21,6 +22,7 @@ export default async function Home({
       <Hero />
       <Services />
       <Clients />
+      <Process />
       <CTA />
       <Footer />
       <WhatsAppButton />

@@ -68,6 +68,17 @@
       { "number": "5+", "label": "Years Experience" }
     ]
   },
+  "process": {
+    "section_title": "How We Work",
+    "steps": [
+      { "number": "1", "title": "Discovery Call" },
+      { "number": "2", "title": "Proposal & Scope" },
+      { "number": "3", "title": "Design & Build" },
+      { "number": "4", "title": "Launch" },
+      { "number": "5", "title": "Ongoing Support" }
+    ],
+    "closing_line": "Every project starts with a free scoping call."
+  },
   "cta": {
     "section_title": "Contact Us",
     "section_subtitle": "Get in Touch",

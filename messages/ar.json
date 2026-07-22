@@ -68,6 +68,17 @@
       { "number": "5+", "label": "سنوات من الخبرة" }
     ]
   },
+  "process": {
+    "section_title": "كيف نعمل",
+    "steps": [
+      { "number": "1", "title": "مكالمة استكشافية" },
+      { "number": "2", "title": "عرض ونطاق العمل" },
+      { "number": "3", "title": "التصميم والبناء" },
+      { "number": "4", "title": "الإطلاق" },
+      { "number": "5", "title": "دعم مستمر" }
+    ],
+    "closing_line": "كل مشروع يبدأ بمكالمة استكشافية مجانية."
+  },
   "cta": {
     "section_title": "تواصل معنا",
     "section_subtitle": "هل لديك مشروع؟",
