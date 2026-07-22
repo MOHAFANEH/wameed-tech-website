@@ -2,48 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  color: #1A1730;
+/* Base color set once; sections override with text-white / text-brand-* classes. */
+body {
+  background-color: #F7F6FB; /* brand-bg */
+  color: #1A1730; /* brand-ink */
 }
 
-html, body {
-  background-color: #F7F6FB;
-  color: #1A1730;
-}
-
-/* Ensure all text is dark by default (low specificity so utility classes like text-white still win) */
-:where(h1, h2, h3, h4, h5, h6, p, span, div, section, article) {
-  color: #1A1730;
-}
-
-/* Brand gradient - white text inside */
+/* Brand gradient utility — background only. Text color is applied explicitly
+   (text-white) on the elements that sit on top of it. */
 .gradient-brand {
   background: linear-gradient(135deg, #2E2560 0%, #4B3F9E 100%);
-  color: #F7F6FB;
 }
 
-.gradient-brand :where(h1, h2, h3, h4, h5, h6, p, span, div) {
-  color: #F7F6FB;
-}
-
-/* Hero slideshow section - force light text over photo background */
-.hero-on-image :where(h1, h2, h3, h4, h5, h6, p, span, div) {
-  color: #F7F6FB;
-}
-
-/* Smooth transitions */
-a, button {
-  transition: all 0.3s ease;
-}
-
-/* Link styles */
 a {
-  color: #2FD4C4;
   text-decoration: none;
 }
 
-a:hover {
-  color: #8B7FE8;
+a,
+button {
+  transition: all 0.3s ease;
 }
 
 button {

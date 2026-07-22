@@ -11,17 +11,6 @@ import Footer from '@/components/Footer'
 export default function Home() {
   const [lang, setLang] = useState('en')
 
-  const content = {
-    en: {
-      title: 'Wameed Tech',
-      subtitle: 'Web & App Development Studio',
-    },
-    ar: {
-      title: 'وميض تك',
-      subtitle: 'استوديو تطوير الويب والتطبيقات',
-    },
-  }
-
   return (
     <div dir={lang === 'ar' ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen">
       <Navigation lang={lang} setLang={setLang} />

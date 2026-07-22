@@ -17,8 +17,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        comfortaa: ['Comfortaa', 'sans-serif'],
-        noto: ['"Noto Sans Arabic"', 'sans-serif'],
+        comfortaa: ['var(--font-comfortaa)', 'sans-serif'],
+        noto: ['var(--font-noto)', 'sans-serif'],
       },
     },
   },

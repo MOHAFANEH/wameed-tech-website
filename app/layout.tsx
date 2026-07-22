@@ -1,5 +1,21 @@
 import type { Metadata } from 'next'
+import { Comfortaa, Noto_Sans_Arabic } from 'next/font/google'
 import './globals.css'
+
+// Same weights as the previous <link>: 400 (regular) + 700 (bold).
+const comfortaa = Comfortaa({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-comfortaa',
+  display: 'swap',
+})
+
+const notoSansArabic = Noto_Sans_Arabic({
+  subsets: ['arabic'],
+  weight: ['400', '700'],
+  variable: '--font-noto',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Wameed Tech | وميض تك - Web & App Development Studio',
@@ -12,10 +28,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" className={`${comfortaa.variable} ${notoSansArabic.variable}`}>
       <body className="font-comfortaa bg-brand-bg text-brand-ink">
         {children}
       </body>

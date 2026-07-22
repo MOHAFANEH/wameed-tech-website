@@ -76,7 +76,7 @@ const CTA = ({ lang }: CTAProps) => {
       } else {
         setStatus('error')
       }
-    } catch (error) {
+    } catch {
       setStatus('error')
     } finally {
       setLoading(false)
@@ -90,7 +90,7 @@ const CTA = ({ lang }: CTAProps) => {
         <Reveal>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{c.title}</h2>
-            <p className="text-2xl text-brand-teal mb-4">{c.subtitle}</p>
+            <p className="text-2xl text-brand-indigo mb-4">{c.subtitle}</p>
             <p className="text-lg text-gray-600">{c.description}</p>
           </div>
         </Reveal>
@@ -176,7 +176,7 @@ const CTA = ({ lang }: CTAProps) => {
           <div>
             <div className="text-3xl mb-2">📧</div>
             <p className="text-gray-600">
-              <a href="mailto:info@wameedtech.com" className="font-semibold hover:text-brand-teal">
+              <a href="mailto:info@wameedtech.com" className="font-semibold text-brand-indigo hover:text-brand-deep hover:underline">
                 Info@wameedtech.com
               </a>
             </p>

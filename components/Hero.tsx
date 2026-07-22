@@ -1,4 +1,4 @@
-import HeroSlideshow from './HeroSlideshow'
+import Image from 'next/image'
 
 interface HeroProps {
   lang: string
@@ -25,14 +25,20 @@ const Hero = ({ lang }: HeroProps) => {
   const c = content[lang as keyof typeof content]
 
   return (
-    <section id="home" className="hero-on-image relative pt-32 pb-20 text-white overflow-hidden">
-      <HeroSlideshow />
+    <section id="home" className="relative pt-32 pb-20 text-white overflow-hidden">
+      {/* Decorative background: brand gradient + soft circles (pure CSS, no assets) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-deep to-brand-indigo" />
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-brand-lilac/10" />
+        <div className="absolute top-1/3 -left-16 w-72 h-72 rounded-full bg-brand-indigo/30" />
+        <div className="absolute bottom-4 right-1/4 w-80 h-80 rounded-full bg-brand-lilac/10" />
+      </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
         {/* Logo */}
         <div className="mb-8">
           <div className="w-32 h-32 mx-auto bg-white bg-opacity-10 rounded-full flex items-center justify-center border-2 border-brand-teal backdrop-blur-sm">
-            <img src="/images/logo-mark.svg" alt="Wameed Tech logo" className="w-20 h-auto" />
+            <Image src="/images/logo-mark.svg" alt="" width={80} height={60} className="w-20 h-auto" priority />
           </div>
         </div>
 

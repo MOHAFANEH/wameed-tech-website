@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 
 interface NavigationProps {
@@ -32,7 +32,7 @@ const Navigation = ({ lang, setLang }: NavigationProps) => {
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2">
           <div className="w-10 h-10 gradient-brand rounded-full flex items-center justify-center">
-            <img src="/images/logo-mark.svg" alt="Wameed Tech" className="w-7 h-auto" />
+            <Image src="/images/logo-mark.svg" alt="Wameed Tech" width={28} height={21} className="w-7 h-auto" priority />
           </div>
           <span className="font-bold text-xl text-brand-deep">
             {lang === 'ar' ? 'وميض تك' : 'Wameed Tech'}
@@ -56,7 +56,7 @@ const Navigation = ({ lang, setLang }: NavigationProps) => {
         <div className="flex items-center gap-4">
           <button
             onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
-            className="px-4 py-2 bg-brand-teal text-white rounded-lg font-medium hover:bg-brand-lilac transition"
+            className="px-4 py-2 bg-brand-teal text-brand-deep rounded-lg font-medium hover:bg-brand-lilac transition"
           >
             {lang === 'en' ? 'العربية' : 'English'}
           </button>

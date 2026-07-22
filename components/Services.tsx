@@ -81,7 +81,7 @@ const Services = ({ lang }: ServicesProps) => {
         <Reveal>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{c.title}</h2>
-            <p className="text-2xl text-brand-teal mb-8">{c.subtitle}</p>
+            <p className="text-2xl text-brand-indigo mb-8">{c.subtitle}</p>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">{c.intro}</p>
           </div>
         </Reveal>
