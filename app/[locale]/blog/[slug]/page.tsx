@@ -1,9 +1,8 @@
-import fs from 'fs'
-import path from 'path'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { compileMDX } from 'next-mdx-remote/rsc'
+import { getPost, getAllSlugs } from '@/lib/blog'
 
 // Minimal styling for MDX output — avoids pulling in @tailwindcss/typography
 // for a single blog article template.
@@ -30,43 +29,25 @@ const mdxComponents = {
   em: (props: React.HTMLAttributes<HTMLElement>) => <em className="text-gray-500" {...props} />,
 }
 
-interface PostFrontmatter {
-  title: string
-  description: string
-  date: string
-  author: string
-  category: string
-}
+async function getCompiledPost(locale: string, slug: string) {
+  const post = await getPost(locale, slug)
+  if (!post) return null
 
-const POSTS_DIR = path.join(process.cwd(), 'app/[locale]/blog/posts')
-
-function resolvePostPath(locale: string, slug: string): string | null {
-  const filename = locale === 'ar' ? `${slug}.ar.mdx` : `${slug}.mdx`
-  const filePath = path.join(POSTS_DIR, filename)
-  return fs.existsSync(filePath) ? filePath : null
-}
-
-async function getPost(locale: string, slug: string) {
-  const filePath = resolvePostPath(locale, slug)
-  if (!filePath) return null
-
-  const source = fs.readFileSync(filePath, 'utf8')
-  const { content, frontmatter } = await compileMDX<PostFrontmatter>({
-    source,
-    options: { parseFrontmatter: true },
+  // No parseFrontmatter here — the DB row already carries title/description/
+  // date/author/category as columns (extracted once, at migration time, by
+  // gray-matter). post.content is just the Markdown body, no frontmatter
+  // block left in it.
+  const { content } = await compileMDX({
+    source: post.content,
     components: mdxComponents,
   })
 
-  return { content, frontmatter }
+  return { ...post, compiledContent: content }
 }
 
 export async function generateStaticParams() {
-  const files = fs.readdirSync(POSTS_DIR)
-  const slugs = new Set<string>()
-  files.forEach((file) => {
-    slugs.add(file.replace(/\.ar\.mdx$|\.mdx$/, ''))
-  })
-  return Array.from(slugs).map((slug) => ({ slug }))
+  const slugs = await getAllSlugs()
+  return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({
@@ -79,8 +60,8 @@ export async function generateMetadata({
   if (!post) return {}
 
   return {
-    title: post.frontmatter.title,
-    description: post.frontmatter.description,
+    title: post.title,
+    description: post.description,
     alternates: {
       canonical: `https://wameedtech.com/${locale}/blog/${slug}`,
       languages: {
@@ -90,10 +71,10 @@ export async function generateMetadata({
     },
     openGraph: {
       type: 'article',
-      title: post.frontmatter.title,
-      description: post.frontmatter.description,
-      publishedTime: post.frontmatter.date,
-      authors: [post.frontmatter.author],
+      title: post.title,
+      description: post.description,
+      publishedTime: post.date,
+      authors: [post.author],
     },
   }
 }
@@ -105,7 +86,7 @@ export default async function BlogPost({
 }) {
   const { locale, slug } = await params
   setRequestLocale(locale)
-  const post = await getPost(locale, slug)
+  const post = await getCompiledPost(locale, slug)
 
   if (!post) notFound()
 
@@ -113,17 +94,15 @@ export default async function BlogPost({
     <main className="min-h-screen py-32 bg-brand-bg">
       <article className="max-w-2xl mx-auto px-4">
         <header className="mb-12">
-          <p className="text-brand-indigo font-semibold mb-2">{post.frontmatter.category}</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-brand-deep mb-4">
-            {post.frontmatter.title}
-          </h1>
+          <p className="text-brand-indigo font-semibold mb-2">{post.category}</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-brand-deep mb-4">{post.title}</h1>
           <div className="flex justify-between items-center text-sm text-gray-500">
-            <span>{post.frontmatter.author}</span>
-            <span>{post.frontmatter.date}</span>
+            <span>{post.author}</span>
+            <span>{post.date}</span>
           </div>
         </header>
 
-        <div>{post.content}</div>
+        <div>{post.compiledContent}</div>
       </article>
     </main>
   )

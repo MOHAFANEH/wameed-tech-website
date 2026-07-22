@@ -1,19 +1,10 @@
 import type { MetadataRoute } from 'next'
-import fs from 'fs'
-import path from 'path'
 import { routing } from '@/i18n/routing'
+import { getAllSlugs } from '@/lib/blog'
 
 const BASE_URL = 'https://wameedtech.com'
-const POSTS_DIR = path.join(process.cwd(), 'app/[locale]/blog/posts')
 
-function getPostSlugs(): string[] {
-  const files = fs.readdirSync(POSTS_DIR)
-  const slugs = new Set<string>()
-  files.forEach((file) => slugs.add(file.replace(/\.ar\.mdx$|\.mdx$/, '')))
-  return Array.from(slugs)
-}
-
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -38,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     })
 
-    for (const slug of getPostSlugs()) {
+    for (const slug of await getAllSlugs()) {
       routes.push({
         url: `${BASE_URL}/${locale}/blog/${slug}`,
         lastModified: new Date(),

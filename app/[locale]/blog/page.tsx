@@ -1,38 +1,7 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
-
-interface PostSummary {
-  slug: string
-  title: string
-  description: string
-  date: string
-  author: string
-}
-
-const POSTS_DIR = path.join(process.cwd(), 'app/[locale]/blog/posts')
-
-function getPosts(locale: string): PostSummary[] {
-  const files = fs.readdirSync(POSTS_DIR)
-
-  return files
-    .filter((file) => (locale === 'ar' ? file.endsWith('.ar.mdx') : file.endsWith('.mdx') && !file.endsWith('.ar.mdx')))
-    .map((file) => {
-      const raw = fs.readFileSync(path.join(POSTS_DIR, file), 'utf8')
-      const { data } = matter(raw)
-      return {
-        slug: file.replace(/\.ar\.mdx$|\.mdx$/, ''),
-        title: data.title as string,
-        description: data.description as string,
-        date: data.date as string,
-        author: data.author as string,
-      }
-    })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-}
+import { getPosts } from '@/lib/blog'
 
 export async function generateMetadata({
   params,
@@ -64,7 +33,7 @@ export default async function BlogIndex({
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations('blog')
-  const posts = getPosts(locale)
+  const posts = await getPosts(locale)
 
   return (
     <main className="min-h-screen py-32 bg-brand-bg">
