@@ -1,8 +1,12 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
+const WHATSAPP_NUMBER = '962786277768'
+
 const Hero = () => {
   const t = useTranslations('hero')
+  const tWhatsapp = useTranslations('whatsapp')
+  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(tWhatsapp('prefill_message'))}`
 
   return (
     <section id="home" className="relative pt-32 pb-20 text-white overflow-hidden">
@@ -37,13 +41,15 @@ const Hero = () => {
         {/* CTA Buttons */}
         <div className="flex flex-col md:flex-row gap-4 justify-center">
           <a
-            href="#contact"
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3 bg-brand-teal text-brand-deep font-bold rounded-lg hover:bg-white transition"
           >
             {t('cta_primary')}
           </a>
           <a
-            href="#about"
+            href="#work"
             className="px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-brand-deep transition"
           >
             {t('cta_secondary')}

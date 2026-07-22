@@ -7,11 +7,15 @@
     "brand": "Wameed Tech",
     "language": "العربية"
   },
+  "whatsapp": {
+    "aria_label": "Chat on WhatsApp",
+    "prefill_message": "Hi Wameed Tech, I'd like to discuss a new project."
+  },
   "hero": {
     "title": "Wameed Tech",
     "subtitle": "وميض تك",
-    "tagline": "Professional Web & App Development Studio",
-    "description": "We design and develop beautiful, fast, and scalable web and mobile applications for businesses that want to grow.",
+    "tagline": "Websites & Apps Built for Growth",
+    "description": "Custom websites, e-commerce, and mobile apps for Jordanian businesses — designed to convert and built to scale.",
     "cta_primary": "Start Your Project",
     "cta_secondary": "Learn More"
   },
@@ -20,10 +24,11 @@
     "section_subtitle": "Why Choose Wameed Tech?",
     "description": "Wameed Tech is a web and mobile app development studio based in Amman, Jordan. We specialize in creating custom digital solutions that help businesses grow and succeed in the digital world.",
     "items": [
-      { "icon": "🌐", "title": "Web Development", "description": "Modern, fast, and scalable websites built with the latest technologies." },
-      { "icon": "📱", "title": "Mobile Apps", "description": "Native and cross-platform mobile applications for iOS and Android." },
-      { "icon": "⚙️", "title": "Custom Solutions", "description": "Tailored software solutions designed specifically for your business needs." },
-      { "icon": "💡", "title": "Strategy & Consulting", "description": "Expert guidance to help you navigate your digital transformation." }
+      { "icon": "🌐", "title": "Business Websites & Landing Pages", "description": "For businesses that need a fast, professional site that turns visitors into customers." },
+      { "icon": "🛒", "title": "E-Commerce Stores", "description": "For retailers ready to sell online — stores that close sales and scale with you." },
+      { "icon": "📊", "title": "Web Apps & Dashboards", "description": "For teams that need custom tools, admin panels, and data dashboards built around their workflow." },
+      { "icon": "📱", "title": "Mobile Apps (iOS/Android)", "description": "For businesses that want to reach customers in their pocket, on both platforms." },
+      { "icon": "🔧", "title": "Redesign & Maintenance", "description": "For an existing site that needs a modern refresh and reliable ongoing support." }
     ],
     "values_title": "Our Core Values",
     "values": [
@@ -32,20 +37,56 @@
       { "label": "Support", "value": "Ongoing support and maintenance after launch" }
     ]
   },
-  "clients": {
-    "section_title": "Our Clients",
+  "work": {
+    "section_title": "Our Work",
     "section_subtitle": "Projects We're Proud Of",
     "description": "We have had the pleasure of working with innovative companies across various industries.",
     "view_project": "View Project",
     "projects": [
-      { "icon": "🧺", "name": "Flashwash", "category": "E-Commerce & Logistics", "description": "Laundry & Dry Cleaning Pickup & Delivery Service", "link": "flashwash.co", "color": "bg-blue-50" },
-      { "icon": "🎯", "name": "Leap on Deals", "category": "E-Commerce", "description": "Online marketplace for discovering amazing deals and discounts", "link": "www.leapondeals.com", "color": "bg-purple-50" }
+      {
+        "image": "/images/work/flashwash.png",
+        "imageAlt": "FlashWash website homepage showing the WhatsApp-based ordering flow and per-item laundry pricing",
+        "name": "Flashwash",
+        "category": "Laundry & Delivery Platform",
+        "description": "Wameed Tech designed and built the FlashWash website — a bilingual laundry and dry-cleaning platform centered on frictionless WhatsApp ordering. Customers book a pickup in one message; the site handles service browsing, transparent per-item pricing, and door-to-door delivery scheduling.",
+        "techStack": ["HTML", "CSS", "JavaScript"],
+        "link": "flashwash.co"
+      },
+      {
+        "image": "/images/work/leapondeals.png",
+        "imageAlt": "Leap on Deals homepage showing the multi-category product marketplace and deal-of-the-day merchandising",
+        "name": "Leap on Deals",
+        "category": "E-Commerce Marketplace",
+        "description": "Wameed Tech built Leap on Deals — a multi-category e-commerce marketplace with product browsing, deal-of-the-day merchandising, cart and wishlist, customer accounts, and full checkout across clothing, electronics, and more.",
+        "techStack": ["WooCommerce", "Node"],
+        "link": "www.leapondeals.com"
+      }
     ],
     "stats": [
       { "number": "20+", "label": "Projects Completed" },
       { "number": "15+", "label": "Happy Clients" },
       { "number": "5+", "label": "Years Experience" }
     ]
+  },
+  "process": {
+    "section_title": "How We Work",
+    "steps": [
+      { "number": "1", "title": "Discovery Call" },
+      { "number": "2", "title": "Proposal & Scope" },
+      { "number": "3", "title": "Design & Build" },
+      { "number": "4", "title": "Launch" },
+      { "number": "5", "title": "Ongoing Support" }
+    ],
+    "closing_line": "Every project starts with a free scoping call."
+  },
+  "founder": {
+    "name": "Mohammad Afaneh",
+    "role": "Founder & Lead Developer",
+    "bio": "Mohammad founded Wameed Tech in 2026, bringing over a decade of hands-on development experience. Clients work directly with the developer who architects and builds their product — no agency layers, no handoffs."
+  },
+  "testimonials": {
+    "section_title": "What Clients Say",
+    "placeholder_text": "More client stories coming soon."
   },
   "cta": {
     "section_title": "Contact Us",
@@ -54,6 +95,23 @@
     "form": {
       "name_label": "Your Name",
       "email_label": "Your Email",
+      "phone_label": "Phone / WhatsApp",
+      "project_type_label": "What do you need?",
+      "project_type_options": {
+        "website": "Website",
+        "ecommerce": "E-commerce",
+        "mobile_app": "Mobile App",
+        "redesign": "Redesign",
+        "other": "Other"
+      },
+      "budget_label": "Budget range",
+      "budget_options": {
+        "under_500": "Under 500 JD",
+        "500_1500": "500–1,500 JD",
+        "1500_5000": "1,500–5,000 JD",
+        "5000_plus": "5,000+ JD",
+        "not_sure": "Not sure yet"
+      },
       "message_label": "Your Message",
       "submit": "Send Message",
       "sending": "Sending...",
@@ -72,7 +130,7 @@
     "crafted_by": "Crafted with ❤️ by Wameed Tech",
     "links": [
       { "label": "About", "href": "#about" },
-      { "label": "Projects", "href": "#clients" },
+      { "label": "Projects", "href": "#work" },
       { "label": "Contact", "href": "#contact" }
     ]
   }
