@@ -30,7 +30,7 @@ const Services = () => {
         </Reveal>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {items.map((service, i) => (
             <Reveal key={i} delay={i * 150}>
               <div className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg hover:-translate-y-2 transition-all duration-300 border-t-4 border-brand-teal h-full">

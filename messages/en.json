@@ -24,10 +24,11 @@
     "section_subtitle": "Why Choose Wameed Tech?",
     "description": "Wameed Tech is a web and mobile app development studio based in Amman, Jordan. We specialize in creating custom digital solutions that help businesses grow and succeed in the digital world.",
     "items": [
-      { "icon": "🌐", "title": "Web Development", "description": "Modern, fast, and scalable websites built with the latest technologies." },
-      { "icon": "📱", "title": "Mobile Apps", "description": "Native and cross-platform mobile applications for iOS and Android." },
-      { "icon": "⚙️", "title": "Custom Solutions", "description": "Tailored software solutions designed specifically for your business needs." },
-      { "icon": "💡", "title": "Strategy & Consulting", "description": "Expert guidance to help you navigate your digital transformation." }
+      { "icon": "🌐", "title": "Business Websites & Landing Pages", "description": "For businesses that need a fast, professional site that turns visitors into customers." },
+      { "icon": "🛒", "title": "E-Commerce Stores", "description": "For retailers ready to sell online — stores that close sales and scale with you." },
+      { "icon": "📊", "title": "Web Apps & Dashboards", "description": "For teams that need custom tools, admin panels, and data dashboards built around their workflow." },
+      { "icon": "📱", "title": "Mobile Apps (iOS/Android)", "description": "For businesses that want to reach customers in their pocket, on both platforms." },
+      { "icon": "🔧", "title": "Redesign & Maintenance", "description": "For an existing site that needs a modern refresh and reliable ongoing support." }
     ],
     "values_title": "Our Core Values",
     "values": [
