@@ -85,6 +85,12 @@ Vercel should already have `wameedtech.com` configured. Verify in:
 3. Verify DNS records match what Vercel shows in **Settings → Domains**
 4. Wait for DNS propagation (can take 5-30 minutes, or up to 48 hours)
 
+### Site is showing only English
+
+Check that both message files exist: `messages/en.json` and `messages/ar.json`.
+If either is missing or incomplete, the build will fail. Run `npm run build` locally
+to verify.
+
 ## Environment Variables Reference
 
 See `.env.example` for a complete list of required variables. Never commit

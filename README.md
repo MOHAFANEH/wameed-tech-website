@@ -67,21 +67,41 @@ See `.env.example` for all required variables.
 ```
 wameed-tech-website/
 ├── app/
-│   ├── layout.tsx           # Root layout
-│   ├── page.tsx             # Home page
+│   ├── [locale]/            # Locale-segmented routes (/en, /ar)
+│   │   ├── layout.tsx       # Root layout (sets <html lang/dir>, fonts)
+│   │   ├── page.tsx         # Home page (server component)
+│   │   └── not-found.tsx    # Localized 404
+│   ├── not-found.tsx        # Fallback 404 (outside a locale)
 │   ├── globals.css          # Global styles
 │   └── api/
 │       └── send-email/      # Email API route
 ├── components/
-│   ├── Navigation.tsx       # Header with language toggle
+│   ├── Navigation.tsx       # Header with language switch (client)
 │   ├── Hero.tsx             # Hero section
 │   ├── Services.tsx         # About & services
 │   ├── Clients.tsx          # Portfolio section
-│   ├── CTA.tsx              # Contact form
-│   └── Footer.tsx           # Footer
+│   ├── CTA.tsx              # Contact form (client)
+│   ├── Footer.tsx           # Footer
+│   └── Reveal.tsx           # Scroll-reveal progressive enhancement (client)
+├── i18n/                    # next-intl config (routing, request, navigation)
+├── messages/               # en.json / ar.json — all user-facing copy
+├── middleware.ts           # Locale detection + routing
 ├── public/                  # Static assets
 └── package.json
 ```
+
+## Internationalization
+
+The site is fully bilingual:
+- English: `https://wameedtech.com/en`
+- Arabic: `https://wameedtech.com/ar`
+
+Language detection is automatic — visiting `https://wameedtech.com` will redirect
+to `/en` or `/ar` based on browser language. Fallback is `/en`.
+
+All copy is stored in `messages/en.json` and `messages/ar.json`. Components read
+from these files via `next-intl`. To add or change copy, edit the message files —
+do not hardcode user-facing strings in components.
 
 ## Deployment
 

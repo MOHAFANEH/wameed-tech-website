@@ -37,7 +37,7 @@ const Clients = () => {
           {projects.map((project, i) => (
             <Reveal key={i} delay={i * 200}>
               <div
-                className={`${project.color} rounded-lg p-12 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-l-4 border-brand-teal min-h-80 h-full`}
+                className={`${project.color} rounded-lg p-12 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-s-4 border-brand-teal min-h-80 h-full`}
               >
                 <div className="text-7xl mb-6">{project.icon}</div>
                 <h3 className="text-3xl font-bold text-brand-deep mb-3">{project.name}</h3>
