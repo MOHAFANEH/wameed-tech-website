@@ -56,7 +56,7 @@ const Navigation = ({ lang, setLang }: NavigationProps) => {
         <div className="flex items-center gap-4">
           <button
             onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
-            className="px-4 py-2 bg-brand-teal text-white rounded-lg font-medium hover:bg-brand-lilac transition"
+            className="px-4 py-2 bg-brand-teal text-brand-deep rounded-lg font-medium hover:bg-brand-lilac transition"
           >
             {lang === 'en' ? 'العربية' : 'English'}
           </button>

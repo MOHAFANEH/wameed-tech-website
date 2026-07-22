@@ -67,7 +67,7 @@ const Clients = ({ lang }: ClientsProps) => {
         <Reveal>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{c.title}</h2>
-            <p className="text-2xl text-brand-teal mb-4">{c.subtitle}</p>
+            <p className="text-2xl text-brand-indigo mb-4">{c.subtitle}</p>
             <p className="text-lg text-gray-600">{c.description}</p>
           </div>
         </Reveal>
@@ -81,13 +81,13 @@ const Clients = ({ lang }: ClientsProps) => {
               >
                 <div className="text-7xl mb-6">{project.icon}</div>
                 <h3 className="text-3xl font-bold text-brand-deep mb-3">{project.name}</h3>
-                <p className="text-brand-teal text-base font-semibold mb-4">{project.category}</p>
+                <p className="text-brand-indigo text-base font-semibold mb-4">{project.category}</p>
                 <p className="text-gray-700 mb-8 text-lg">{project.description}</p>
                 <a
                   href={`https://${project.link}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-6 py-2 bg-brand-teal text-white font-semibold rounded-lg hover:bg-brand-lilac transition"
+                  className="inline-block px-6 py-2 bg-brand-teal text-brand-deep font-semibold rounded-lg hover:bg-brand-lilac transition"
                 >
                   {lang === 'en' ? 'View Project' : 'اعرض المشروع'}
                 </a>
@@ -105,7 +105,7 @@ const Clients = ({ lang }: ClientsProps) => {
           ].map((stat, i) => (
             <Reveal key={i} delay={i * 150}>
               <div>
-                <div className="text-4xl font-bold text-brand-teal">{stat.num}</div>
+                <div className="text-4xl font-bold text-brand-indigo">{stat.num}</div>
                 <p className="text-gray-600 text-lg">
                   {lang === 'en' ? stat.en : stat.ar}
                 </p>

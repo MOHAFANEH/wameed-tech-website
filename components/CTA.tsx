@@ -90,7 +90,7 @@ const CTA = ({ lang }: CTAProps) => {
         <Reveal>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-brand-deep mb-2">{c.title}</h2>
-            <p className="text-2xl text-brand-teal mb-4">{c.subtitle}</p>
+            <p className="text-2xl text-brand-indigo mb-4">{c.subtitle}</p>
             <p className="text-lg text-gray-600">{c.description}</p>
           </div>
         </Reveal>
