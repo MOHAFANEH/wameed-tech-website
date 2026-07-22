@@ -6,15 +6,20 @@ import Reveal from './Reveal'
 
 const CTA = () => {
   const t = useTranslations('cta')
+  const projectTypeOptions = t.raw('form.project_type_options') as Record<string, string>
+  const budgetOptions = t.raw('form.budget_options') as Record<string, string>
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
+    projectType: '',
+    budget: '',
     message: '',
   })
   const [status, setStatus] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -35,7 +40,7 @@ const CTA = () => {
 
       if (response.ok) {
         setStatus('success')
-        setFormData({ name: '', email: '', message: '' })
+        setFormData({ name: '', email: '', phone: '', projectType: '', budget: '', message: '' })
         setTimeout(() => setStatus(''), 5000)
       } else {
         setStatus('error')
@@ -93,6 +98,62 @@ const CTA = () => {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal"
                 placeholder={t('form.email_label')}
               />
+            </div>
+
+            {/* Phone / WhatsApp */}
+            <div>
+              <label className="block text-sm font-semibold text-brand-deep mb-2">
+                {t('form.phone_label')}
+              </label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                maxLength={30}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                placeholder={t('form.phone_label')}
+              />
+            </div>
+
+            {/* Project Type */}
+            <div>
+              <label className="block text-sm font-semibold text-brand-deep mb-2">
+                {t('form.project_type_label')}
+              </label>
+              <select
+                name="projectType"
+                value={formData.projectType}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal bg-white"
+              >
+                <option value="" />
+                {Object.entries(projectTypeOptions).map(([key, label]) => (
+                  <option key={key} value={label}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Budget */}
+            <div>
+              <label className="block text-sm font-semibold text-brand-deep mb-2">
+                {t('form.budget_label')}
+              </label>
+              <select
+                name="budget"
+                value={formData.budget}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal bg-white"
+              >
+                <option value="" />
+                {Object.entries(budgetOptions).map(([key, label]) => (
+                  <option key={key} value={label}>
+                    {label}
+                  </option>
+                ))}
+              </select>
             </div>
 
             {/* Message */}

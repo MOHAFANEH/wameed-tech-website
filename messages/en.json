@@ -95,6 +95,23 @@
     "form": {
       "name_label": "Your Name",
       "email_label": "Your Email",
+      "phone_label": "Phone / WhatsApp",
+      "project_type_label": "What do you need?",
+      "project_type_options": {
+        "website": "Website",
+        "ecommerce": "E-commerce",
+        "mobile_app": "Mobile App",
+        "redesign": "Redesign",
+        "other": "Other"
+      },
+      "budget_label": "Budget range",
+      "budget_options": {
+        "under_500": "Under 500 JD",
+        "500_1500": "500–1,500 JD",
+        "1500_5000": "1,500–5,000 JD",
+        "5000_plus": "5,000+ JD",
+        "not_sure": "Not sure yet"
+      },
       "message_label": "Your Message",
       "submit": "Send Message",
       "sending": "Sending...",
