@@ -2,12 +2,13 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Link, usePathname } from '@/i18n/navigation'
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const locale = useLocale()
+  const t = useTranslations('navigation')
   const pathname = usePathname()
   const otherLocale = locale === 'en' ? 'ar' : 'en'
   const otherLabel = locale === 'en' ? 'العربية' : 'English'
@@ -51,6 +52,12 @@ const Navigation = () => {
               {link.label}
             </a>
           ))}
+          <Link
+            href="/blog"
+            className="text-brand-deep hover:text-brand-teal font-medium transition"
+          >
+            {t('blog')}
+          </Link>
         </div>
 
         {/* Language Toggle + Mobile Menu */}
@@ -91,6 +98,13 @@ const Navigation = () => {
                 {link.label}
               </a>
             ))}
+            <Link
+              href="/blog"
+              className="text-brand-deep hover:text-brand-teal font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t('blog')}
+            </Link>
           </div>
         </div>
       )}

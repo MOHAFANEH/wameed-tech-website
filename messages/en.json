@@ -4,8 +4,14 @@
     "about": "About",
     "clients": "Clients",
     "contact": "Contact",
+    "blog": "Blog",
     "brand": "Wameed Tech",
     "language": "العربية"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Latest articles and insights from Wameed Tech.",
+    "no_posts": "No posts yet. Check back soon!"
   },
   "whatsapp": {
     "aria_label": "Chat on WhatsApp",
