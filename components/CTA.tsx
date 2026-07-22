@@ -76,7 +76,7 @@ const CTA = ({ lang }: CTAProps) => {
       } else {
         setStatus('error')
       }
-    } catch (error) {
+    } catch {
       setStatus('error')
     } finally {
       setLoading(false)
