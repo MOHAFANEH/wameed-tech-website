@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams, useRouter } from 'next/navigation'
+import ImageUploadField from '@/components/admin/ImageUploadField'
 
 const CATEGORIES = ['Web Development', 'E-Commerce', 'Mobile Apps', 'Business', 'Other']
 
@@ -37,6 +38,8 @@ export default function EditBlogPostPage() {
     register,
     handleSubmit,
     reset,
+    getValues,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>()
 
@@ -125,9 +128,12 @@ export default function EditBlogPostPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-brand-deep mb-1">
-            Content (Markdown)
-          </label>
+          <div className="flex items-center justify-between mb-1">
+            <label className="block text-sm font-semibold text-brand-deep">
+              Content (Markdown)
+            </label>
+            <ImageUploadField onInsert={(md) => setValue('content', getValues('content') + md)} />
+          </div>
           <textarea
             dir={post.locale === 'ar' ? 'rtl' : 'ltr'}
             {...register('content', { required: true })}
