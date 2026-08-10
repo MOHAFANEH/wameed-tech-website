@@ -1,0 +1,12 @@
+# app-ads.txt — authorised digital sellers for Wameed Tech mobile apps
+# Spec: https://iabtechlab.com/ads-txt/
+#
+# Declares who may sell advertising inventory in our apps. Crawlers reach this
+# at https://wameedtech.com/app-ads.txt, which must match the developer website
+# listed on each app's store page, or the file is never found.
+#
+# Format: <ad system domain>, <publisher id>, <relationship>, <certification id>
+# f08c47fec0942fa0 is Google's TAG certification authority id and is the same
+# for every AdMob publisher — it is not a secret and not specific to us.
+
+google.com, pub-9158216296573196, DIRECT, f08c47fec0942fa0
