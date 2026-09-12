@@ -58,6 +58,12 @@ const Navigation = () => {
           >
             {t('blog')}
           </Link>
+          <Link
+            href="/fitness"
+            className="text-brand-deep hover:text-brand-teal font-medium transition"
+          >
+            {locale === 'ar' ? 'خطة ١٢ أسبوعاً' : '12-Week Plan'}
+          </Link>
         </div>
 
         {/* Language Toggle + Mobile Menu */}
@@ -104,6 +110,13 @@ const Navigation = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               {t('blog')}
+            </Link>
+            <Link
+              href="/fitness"
+              className="text-brand-deep hover:text-brand-teal font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {locale === 'ar' ? 'خطة ١٢ أسبوعاً' : '12-Week Plan'}
             </Link>
           </div>
         </div>
