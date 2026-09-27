@@ -16,6 +16,15 @@ function isPublicAdminPath(pathname: string): boolean {
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  // Legal pages for the AutoAccept: Driver Assistant app. App stores store
+  // the policy URL literally, so these must resolve at exactly
+  // /autoclikerksa/term and /autoclikerksa/privacy — next-intl would
+  // otherwise redirect them to /en/autoclikerksa/..., a different address.
+  // Public: no session required.
+  if (pathname === '/autoclikerksa' || pathname.startsWith('/autoclikerksa/')) {
+    return NextResponse.next()
+  }
+
   // Admin routes are a separate, non-i18n section (app/admin/..., not
   // app/[locale]/admin/...) — they must never go through next-intl's
   // locale-detection/redirect logic, which would otherwise try to prefix
