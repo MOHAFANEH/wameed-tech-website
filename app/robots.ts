@@ -5,11 +5,12 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      // /noor holds the Noor ALDEEN privacy policy. It must stay publicly
-      // reachable — Google Play rejects an app whose policy URL needs a login —
-      // but it is deliberately unlisted: nothing on the site links to it and
-      // search engines are asked to skip it.
-      disallow: ['/api', '/noor'],
+      // /noor and /autoclikerksa hold app legal pages (Noor ALDEEN, and
+      // AutoAccept: Driver Assistant). They must stay publicly reachable —
+      // app stores reject a policy URL that needs a login — but they are
+      // deliberately unlisted: nothing on the site links to them and search
+      // engines are asked to skip them.
+      disallow: ['/api', '/noor', '/autoclikerksa'],
     },
     sitemap: 'https://wameedtech.com/sitemap.xml',
   }
