@@ -25,6 +25,12 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
+  // Client test site proxied by a rewrite in next.config.js; next-intl must
+  // not prefix it with /en or /ar.
+  if (pathname === '/bluecloud' || pathname.startsWith('/bluecloud/')) {
+    return NextResponse.next()
+  }
+
   // Admin routes are a separate, non-i18n section (app/admin/..., not
   // app/[locale]/admin/...) — they must never go through next-intl's
   // locale-detection/redirect logic, which would otherwise try to prefix
